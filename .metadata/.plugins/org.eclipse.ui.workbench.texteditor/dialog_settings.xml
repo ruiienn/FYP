@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="887"/>
+		<item key="DIALOG_Y_ORIGIN" value="568"/>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="true"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="pac"/>
+		<list key="findhistory">
+			<item value="pac"/>
+			<item value="add"/>
+			<item value="visitor"/>
+			<item value="activities"/>
+			<item value="item"/>
+			<item value="saveUpdatedItem"/>
+			<item value="list"/>
+			<item value="dtype"/>
+			<item value="save"/>
+			<item value="point-img"/>
+			<item value="score"/>
+			<item value="&lt;!DOCTYPE HTML&gt;"/>
+			<item value="text-decoration"/>
+			<item value="details"/>
+			<item value="placing"/>
+		</list>
+		<list key="replacehistory">
+			<item value=""/>
+			<item value="pfp"/>
+			<item value="Diploma"/>
+			<item value="diploma"/>
+			<item value="Booth"/>
+			<item value="booth"/>
+			<item value="Points"/>
+			<item value="points"/>
+			<item value="Activity"/>
+			<item value="activity"/>
+			<item value="activities"/>
+			<item value="Activities"/>
+			<item value="images"/>
+			<item value="rewards"/>
+			<item value="reset"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="387"/>
+		<item key="DIALOG_Y_ORIGIN" value="781"/>
+		<item key="DIALOG_WIDTH" value="511"/>
+		<item key="DIALOG_HEIGHT" value="523"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+	</section>
+</section>

@@ -1,0 +1,12 @@
+<style>
+.btn-add {
+	background-color: #607cac;
+	text-decoration: none;
+	border: none;
+	border-radius: 20px;
+	color: white;
+	font-size: 20px;
+	padding: 10px;
+	position: absolute;
+}
+</style>

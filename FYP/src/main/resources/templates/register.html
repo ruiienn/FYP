@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Register</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.profile {
+	margin-top: 50px;
+	background-color: white;
+	border-radius: 50%;
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	margin-top: 30px;
+	top: 10%;
+	left: 30%;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+	
+	<div th:replace="fragments/login_style"></div>
+	<div class="content">
+		<div class="container">
+			<div class="login">
+				<b><i
+					style="position: absolute; top: 35px; margin-left: 30px; font-size: 25px;">
+						Register </i></b>
+				<div class="profile"></div>
+				<div>
+					<label class="label-login" style="margin-top: 220px;"
+						for="username"> Username</label> <input class="input-login"
+						type="text" id="username">
+				</div>
+				<div>
+					<label class="label-login" style="margin-top: 20px;" for="email">
+						Email</label> <input class="input-login" type="text" id="email">
+				</div>
+
+				<div>
+					<label class="label-login" style="margin-top: 20px;" for="pwd">
+						Password</label> <input class="input-login" type="text" id="pwd">
+
+				</div>
+				<div>
+					<a href="/" target="_self" class="btn-login"
+						style="margin-top: 100px; text-align: center"> Register </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<style>
+.rewards {
+	background-color: #ececeb;
+	border-radius: 30px;
+	width: 70%;
+	height: auto;
+	margin: 8% 3%;
+	padding: 15px;
+	border: 2px solid #06B48B;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+}
+
+.label-container {
+	position: sticky;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+.label {
+	width: auto;
+	height: auto;
+	padding: 20px 30px;
+	border: none;
+	border-radius: 20px;
+	margin: 0 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.link {
+	text-decoration: none;
+	color: black
+}
+
+.img {
+	height: 60px;
+	width: 60px;
+}
+
+.filter {
+	display: flex;
+	margin-bottom: 20px;
+}
+
+.other {
+	background-color: #FFFFFF;
+	width: 90%;
+	padding: 20px 30px;
+	border: none;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	
+}
+
+.reward-img {
+	width: 150px;;
+	height: auto;
+}
+
+.info {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 20px;
+}
+.point-img {
+	width: 40px;
+	height: 40px;
+}
+
+.btn-redeem {
+	background-color: #06B48B;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	height: 50px;
+	margin-top: 100px;
+	text-decoration: none;
+}
+
+
+.history {
+	background-color: #ececeb;
+	border-radius: 30px;
+	width: auto;
+	height: auto;
+	margin: 3% 15% 0%;
+	padding: 15px 25px;
+	border: 2px solid #06B48B;
+	display: inline-block;
+}
+</style>

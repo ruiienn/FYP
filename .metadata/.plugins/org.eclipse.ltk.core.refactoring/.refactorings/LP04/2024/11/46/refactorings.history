@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;BooklinkConfig.java&apos; to &apos;FYP2/src/main/java/fyp.tayxinyu&apos;&#x0D;&#x0A;- Original project: &apos;LP04&apos;&#x0D;&#x0A;- Destination element: &apos;FYP2/src/main/java/fyp.tayxinyu&apos;&#x0D;&#x0A;- Original element: &apos;e63c.tayxinyu.lp04.BooklinkConfig.java&apos;" description="Copy compilation unit" destination="=FYP2/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;fyp.tayxinyu" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;e63c.tayxinyu.lp04{BooklinkConfig.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1731487791911" units="1" version="1.0"/>
+</session>

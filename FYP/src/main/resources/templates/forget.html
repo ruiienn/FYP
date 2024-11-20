@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reset Password</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.reset {
+	background-color: #ececeb;
+	border-radius: 30px;
+	border: solid black;
+	width: 320px;
+	height: 300px;
+	top: 15%;
+	position: fixed;
+}
+.label-reset {
+	margin-left: 30px;
+}
+
+.input-reset {
+	display: block;
+	margin-left: 30px;
+	border-radius: 20px;
+	border: none;
+	width: 250px;
+	height: 40px;
+}
+.btn-reset{
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+	background-color: #ececeb;
+	width: 120px;
+	height: 50px;
+	border-radius: 30px;
+	display: block;
+	padding: 10px;
+	margin-left: 190px;;
+	text-align: center;
+	}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+
+	
+	<main>
+		<div class="container">
+			<div class="reset">
+				<b><i
+					style="position: absolute; top: 35px; margin-left: 30px; font-size: 25px;">
+						Reset Password</i></b>
+
+				<div>
+					<label class="label-reset" style="margin-top: 100px;" for="new">
+						New Password</label> <input class="input-reset" type="text" id="new">
+				</div>
+
+				<div>
+					<label class="label-reset" style="margin-top: 30px;" for="confirm">
+						Confirm Password</label> <input class="input-reset" type="text" id="confirm">
+
+				</div>
+					<a href="/" target="_self" class="btn-reset" style="margin-top: 80px;"> Reset 
+				
+				</a>
+				</div>
+			</div>
+	</main>
+	<div th:replace="fragments/more_footer"></div>
+
+</body>
+</html>

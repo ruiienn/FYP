@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Home</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.point {
+	background-color: #ececeb;
+	border-radius: 30px;
+	border: 2px solid #06B48B;
+	width: 30%;
+	height: 200px;
+	top: 12%;
+	position: fixed;
+}
+
+.leader {
+	background-color: #ececeb;
+	border-radius: 30px;
+	border: 2px solid #06B48B;
+	width: 70%;
+	height: 450px;
+	top: 35%;
+	position: fixed;
+}
+
+.reward {
+	background: white;
+	width: 90%;
+	height: 60px;
+	border: 1px solid black;
+	border-radius: 15px;
+	margin: 10px 0px 10px 15px;
+	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.placing {
+	display: flex;
+	justify-content: space-between;
+}
+
+.box {
+	text-align: center;
+	padding: 10px;
+	border-radius: 10px;
+}
+
+.trophy {
+	width: 50px;
+	height: 50px;
+	margin: 0 auto;
+}
+
+.first {
+	background: #D6BD68;
+}
+
+.second {
+	background: #BBC2CC;
+}
+
+.third {
+	background: #DAAA5E;
+}
+
+.pfp {
+	height: 50px;
+	width: 50px;
+}
+
+.details {
+	display: flex;
+	flex-direction: row;
+	margin-top: 20px;
+}
+
+.reward-img {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+
+
+	<main>
+		<div class="container">
+			<div class="point">
+				<div>
+					<span style="display: block; margin-top: 10px; text-align: center;">Points</span>
+					<img style="width: 50px; height: 50px; margin-left: 70px;"
+						src="img/point.png" />
+				</div>
+				<div>
+					<span style="display: block; text-align: center;">Number of
+						rewards redeemed</span> <img
+						style="width: 70px; height: 50px; margin-left: 50px; margin-top: 5px;"
+						src="img/redeem.png" />
+				</div>
+			</div>
+			<div class="leader" style="padding-top: 15px;">
+				<i style="margin-left: 30px; font-size: 20px;"> Leaderboard </i>
+				<div style="padding-top: 15px;">
+					<!-- Replace pfp and username -->
+					<div class="placing">
+						<div class=" box second">
+							<img src="img/second.png" class="trophy"> <img
+								src="img/profile.png" class="pfp">
+							<p style="margin-top: 10px;">username</p>
+							<p>
+								450 <img src="/img/point.png" class="reward-img">
+						</div>
+						<div class="box first">
+							<img src="img/first.png" class="trophy"> <img
+								src="img/profile.png" class="pfp">
+							<p style="margin-top: 10px;">username</p>
+							<p>
+								500 <img src="/img/point.png" class="reward-img">
+						</div>
+						<div class="box third">
+							<img src="img/third.png" class="trophy"> <img
+								src="img/profile.png" class="pfp">
+							<p style="margin-top: 10px;">username</p>
+							<p>
+								400 <img src="/img/point.png" class="reward-img">
+						</div>
+					</div>
+
+					<div class="reward">
+						<span style="margin-left: 15px;">4</span> <img class="pfp"
+							src="/img/profile.png">
+						<div class="details">
+							<p>username</p>
+							<p style="margin: 0 15px;">
+								100 <img src="/img/point.png" class="reward-img">
+							</p>
+						</div>
+					</div>
+
+					<div class="reward">
+						<span style="margin-left: 15px;">5</span> <img class="pfp"
+							src="/img/profile.png">
+						<div class="details">
+							<p>username</p>
+							<p style="margin: 0 15px;">
+								50 <img src="/img/point.png" class="reward-img">
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+</body>
+</html>

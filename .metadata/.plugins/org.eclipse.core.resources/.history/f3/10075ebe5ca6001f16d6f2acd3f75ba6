@@ -1,0 +1,150 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Add Activities</title>
+<link rel="icon" type="image/png" href="/images/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.activity {
+	background-color: #ececeb;
+	border-radius: 20px;
+	border: 2px solid #06B48B;
+	width: 90%;
+	height: auto;
+	position: fixed;
+	margin: 2% 10%;
+	position: relative;
+	
+}
+
+.label-activity {
+	margin: 20px 0 0 20px;;
+}
+
+.input-activity {
+	display: block;
+	margin: 5px 0 0 20px;
+	border-radius: 10px;
+	border: none;
+	width: 80%;
+	height: 40px;
+}
+
+.btn-add {
+	background-color: #607cac;
+	text-decoration: none;
+	border: none;
+	border-radius: 20px;
+	color: black;
+	font-size: 20px;
+	padding: 10px;
+	position: absolute;
+	margin-left: 170px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/style"></div>
+	<div class="container">
+		<div class="activity">
+			<h1>Add Activity</h1>
+			<form class="needs-validation" th:action="@{/activities/save}"
+				th:object="${activities}" method="post"
+				enctype="multipart/form-data" novalidate>
+				<div class="row">
+					<label class="label-activity" for="diploma_select">Diploma</label>
+					<select class="input-activity" id="diploma_select"
+						th:field="*{diploma}" required>
+						<option value="">Select your diploma</option>
+						<option th:each="diploma : ${diplomaList}"
+							th:value="${diploma.id}" th:text="${diploma.name}"></option>
+						<option value="CIP">CIP</option>
+						<option value="DAAA">DAAA</option>
+						<option value="DCDF">DCDF</option>
+						<option value="DECM">DECM</option>
+						<option value="DFT">DFT</option>
+						<option value="DIT">DIT</option>
+					</select>
+					<div class="invalid-feedback">Please select your diploma!</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('diploma')}"
+						th:errors="*{diploma}"></p>
+				</div>
+
+				<div class="mb-3 col-5">
+					<label for="activities_booth" class="form-label">Booth</label> <input
+						id="activities_booth" class="form-control" type="text"
+						th:field="*{booth}" required minlength=5 maxlength=100>
+					<div class="invalid-feedback">Please enter a valid booth</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('booth')}"
+						th:errors="*{booth}"></p>
+				</div>
+
+				<div class="mb-3 col-5">
+					<label for="activitiesImages" class="form-label">Activity
+						image: </label> <input type="file" class="form-control"
+						id="activitiesImages" name="activitiesImages"
+						accept="images/png, images/jpeg" required />
+					<div class="invalid-feedback">Please enter a valid Image.</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('imagesName')}"
+						th:errors="*{imagesName}"></p>
+				</div>
+
+				<div class="mb-3 col-5">
+					<label for="activities_activity" class="form-label">Activity</label>
+					<input id="activities_activity" class="form-control" type="text"
+						th:field="*{activity}" required minlength=5 maxlength=50>
+					<div class="invalid-feedback">Please enter a valid activity</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('activity')}"
+						th:errors="*{activity}"></p>
+				</div>
+
+				<div class="mb-3 col-5">
+					<label for="activities_description" class="form-label">Description</label>
+					<input id="activities_description" class="form-control" type="text"
+						th:field="*{description}" required minlength=5 maxlength=100>
+					<div class="invalid-feedback">Please enter a valid
+						description</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('description')}"
+						th:errors="*{description}"></p>
+				</div>
+
+				<div class="mb-3 col-5">
+					<label for="activities_points" class="form-label">Points</label> <input
+						id="activities_points" class="form-control" type="number" step=1
+						th:field="*{points}" required min=10>
+					<div class="invalid-feedback">Please enter a valid points.</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('points')}"
+						th:errors="*{points}"></p>
+				</div>
+				<div class="mt-5">
+					<input type="submit" value="Add activities">
+				</div>
+			</form>
+			<!-- Form Validation -->
+			<script>
+				'use strict'
+
+				var form = document.querySelector('.needs-validation')
+
+				form.addEventListener('submit', function(event) {
+					if (!form.checkValidity()) {
+						event.preventDefault()
+						event.stopPropagation()
+					}
+
+					form.classList.add('was-validated')
+				})
+			</script>
+			<!-- End Form Validation -->
+
+		</div>
+		<script>
+			function myFunction() {
+				alert("Activity has been added sucessfully!");
+			}
+		</script>
+	</div>
+</body>
+</html>

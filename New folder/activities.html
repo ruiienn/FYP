@@ -1,0 +1,77 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Activities</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.activity {
+	background-color: #ececeb;
+	border-radius: 20px;
+	border: 2px solid #06B48B;
+	width: 90%;
+	height: 100%;
+	top: 10%;
+	position: fixed;
+	margin: 30px 0;
+	position: relative;
+}
+
+.btn-add {
+	background-color: #607cac;
+	text-decoration: none;
+	border: none;
+	border-radius: 20px;
+	color: black;
+	font-size: 20px;
+	padding: 10px;
+	position: absolute;
+	margin-left: 95px;
+	
+}
+</style>
+</head>
+<body>
+	<a href="/style"></a>
+	<div class="container">
+		<div class="activity">
+			<main>
+				<table class="table bordered" style="text-align: center;">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Diploma</th>
+							<th>Booth</th>
+							<th>Activity</th>
+							<th>Description</th>
+							<th>Points</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center;">
+						<tr th:each="activities : ${listActivities}">
+							<td th:text="${activities.id}"></td>
+							<td th:text="${activities.diploma}"></td>
+							<td th:text="${activities.booth}"></td>
+							<td th:text="${activities.activity}"></td>
+							<td th:text="${activities.description}"></td>
+							<td th:text="${activities.point}"></td>
+							<td><a
+								th:href="@{/activities/edit/{id}(id=${activities.id})}"
+								style="color: black; text-decoration: none;">Edit</a> |<a
+								th:href="@{/activities/delete/{id}(id=${activities.id})}"
+								style="color: black; text-decoration: none;">Delete</a></td>
+						</tr>
+					</tbody>
+				</table>
+		</div>
+		<div>
+			<a href="/activities/add" class="btn-add">Add more activities</a>
+		</div>
+		</main>
+	</div>
+</body>
+</html>

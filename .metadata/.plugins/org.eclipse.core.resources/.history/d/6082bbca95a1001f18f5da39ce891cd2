@@ -1,0 +1,23 @@
+package fyp.tayxinyu;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+public class DiplomaController {
+
+	@Autowired
+	private DiplomaRepository diplomaRepository;
+
+	@GetMapping("/diploma")
+	public String viewDiploma(Model model) {
+
+		List<Category> listCategories = categoryRepository.findAll();
+		model.addAttribute("listCategories", listCategories);
+		return "view_categories";
+
+	}
+}

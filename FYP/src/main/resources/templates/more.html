@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+</head>
+<style>
+.more {
+	background-color: #06B48B;
+	border-radius: 30px;
+	width: 70%;
+	height: 500px;
+	top: 15%;
+	left: 8%;
+	position: fixed;
+}
+
+.background {
+	font-size: 20px;
+	color: black;
+	text-decoration: none;
+	background-color: #ececeb;
+	width: 250px;
+	height: 200px;
+	border-radius: 30px;
+	display: flex;
+	align-items: center;
+	padding: 5px;
+	margin: 30px;
+
+	
+}
+
+.background:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.img {
+	width: 40px;
+	height: 40px;
+	margin-left: 20px;
+}
+</style>
+<body>
+	<div th:replace="fragments/header"></div>
+	
+	<div class="container">
+		<div class="more">
+			<main>
+				<a href="/profile" target="_self" class="background" style="margin-top: 50px;"> <img
+					class="img" src="img/profile.png" /> <span
+					style="margin-left: 10px;">Profile</span>
+				</a> <a
+					href="/NFC GUIDE.pdf" 
+					target="_self" class="background"> <img class="img"
+					src="img/guide.png" /> <span style="margin-left: 10px;">User
+						Guide</span>
+				</a> <a href="https://forms.gle/tJ3aNRu56ZBdpijv7" target="_self" class="background"> <img
+					class="img" src="img/feedback.png" /> <span
+					style="margin-left: 10px;">Feedback</span>
+				</a>
+				<button class="background" 
+					onclick="confirmDelete()">
+					<img class="img" src="img/delete.png" /> <span
+						style="margin-left: 10px;">Delete Account</span>
+				</button>
+				<button class="background"
+					onclick="confirmDelete()">
+					<img class="img" src="img/log out.png" /> <span
+						style="margin-left: 10px;">Log Out</span>
+				</button>
+				<a href="/login" target="_self" class="background" style="margin-top: 150px;"> <span
+					style="margin-left: 20px;">Login</span>
+				</a> </br> <a href="/register" target="_self" class="background"> <span
+					style="margin-left: 20px;">Register</span>
+				</a>
+			</main>
+		</div>
+	</div>
+
+</body>
+</html>

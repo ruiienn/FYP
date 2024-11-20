@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>More</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+</head>
+<body>
+	<div th:replace="fragments/style"></div>
+	<div th:replace="fragments/more_style"></div>
+
+
+	<div class="more">
+		<div>
+			<a href="/avatar" target="_self" class="background"> <img
+				class="img" src="images/profile.png" /> <span class="text">Profile</span>
+			</a>
+		</div>
+		<div>
+			<a href="/NFC GUIDE.pdf" target="_self" class="background"> <img
+				class="img" src="images/guide.png" /> <span class="text">User
+					Guide</span>
+			</a>
+		</div>
+		<div>
+			<a href="https://forms.gle/tJ3aNRu56ZBdpijv7" target="_self"
+				class="background"> <img class="img" src="images/feedback.png" />
+				<span class="text">Feedback</span>
+			</a>
+		</div>
+		<div>
+			<a th:href="@{/members/delete/{id}(id=${activities.id})}" target="_self"
+				class="background"
+				style="color: black; text-decoration: none;">Delete Account</a>
+		</div>
+		<button class="background" onclick="confirmDelete()">
+			<img class="img" src="images/delete.png" /> <span class="text">Delete
+				Account</span>
+		</button>
+		<button style="left: 600px;" class="background"
+			onclick="confirmDelete()">
+			<img class="img" src="images/log out.png" /> <span class="text">Log
+				Out</span>
+		</button>
+		<!--  
+				<a href="/login" target="_self" class="account"
+					style="margin-top: 150px;"> <span style="margin-left: 20px;">Login</span>
+				</a><a href="/register" target="_self" class="account"> <span
+					style="margin-left: 20px;">Register</span>
+				</a>-->
+	</div>
+
+
+</body>
+</html>

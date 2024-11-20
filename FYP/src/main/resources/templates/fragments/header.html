@@ -1,0 +1,140 @@
+<style>
+body {
+	font-family: Verdana;
+	background-color: #E6E2D5;
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 80%;
+	margin: auto;
+}
+
+.content {
+	max-width: 500px;
+	margin: auto;
+}
+
+.sidebar {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	background-color: #06B48B;
+	overflow-x: hidden;
+	padding-top: 70px;
+}
+
+.sidebar a {
+	padding: 10px 10px 10px 30px;
+	text-decoration: none;
+	font-size: 20px;
+	color: white;
+	display: flex;
+	align-items: center;
+}
+
+.openbtn {
+	background-color: transparent;
+	font-size: 30px;
+	padding: 10px 15px;
+	border: none;
+	position: fixed;
+	top: 40px;
+	right: 30px;
+	font-size: 30px;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+.text {
+	margin-left: 30px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	width: 90px;
+	height: 90px;
+	top: 2%;
+	left: 8%;
+	position: fixed;
+}
+
+.button-img {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	width: 120px;
+	height: 120px;
+	border-radius: 80%;
+	bottom: 2%;
+	right: 10%;
+	position: fixed;
+}
+
+.pac {
+	width: 250px;
+	height: 250px;
+	position: absolute;
+	top: 70%;
+	margin-left: 15px;
+}
+
+.mushroom {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 20%;
+	right: 5%;
+}
+</style>
+</head>
+<header>
+	<img class="pac" src="/img/pac.png"> <img class="mushroom"
+		src="/img/mushroom.png">
+	<div id="mySidebar" class="sidebar">
+		<a href="/" target="_self"> <img class="icon" src="img/home.png" />
+			<span class="text">Home</span>
+		</a> <a href="/rewards" target="_self"> <img class="icon"
+			src="img/gift.png" /> <span class="text">Rewards</span>
+		</a> <a href="/activities" target="_self"> <img class="icon"
+			src="img/point.png" /> <span class="text">Activities</span>
+		</a> <a href="/" target="_self"> <img class="icon"
+			src="img/member.png" /> <span class="text">Members</span>
+		</a> <a href="/more" target="_self"> <img class="icon"
+			src="img/more.png" /> <span class="text">More</span>
+		</a>
+	</div>
+
+	<button id="sidebarToggle" class="openbtn" onclick="toggleNav()">☰</button>
+	<a href="/" style="text-decoration: none;"> <img class="header"
+		src="img/logo.png">
+	</a> <a href="/rewards" style="text-decoration: none;"> <img
+		class="button-img" src="img/button.png" />
+	</a>
+	<script>
+		function toggleNav() {
+			const sidebar = document.getElementById("mySidebar");
+			const button = document.getElementById("sidebarToggle");
+
+			if (sidebar.style.width === "220px") {
+				sidebar.style.width = "0";
+				button.style.right = "10px";
+			} else {
+				sidebar.style.width = "220px";
+				button.style.right = "260px";
+			}
+		}
+	</script>
+</header>
+

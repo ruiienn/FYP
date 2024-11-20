@@ -1,0 +1,12 @@
+<footer style="position: fixed; bottom: 0; width: 100%;">
+	<div class="mb-3" style="margin: 240px 0px 0px 10px;">
+		<div style="display: inline-block;">
+			<img style="width: 50px; height: 50px; margin-left: 20px;" src="img/home.png" alt="Home Icon" />
+			<img style="width: 50px; height: 50px; margin-left: 60px;" src="img/wallet.png" alt="Wallet Icon" />
+			<div style="display: inline-block; background-color: #607cac; padding-left: 10px; padding-right: 10px; margin-left: 70px;">
+				<img style="width: 50px; height: 50px;" src="img/game.png" alt="Game Icon" />
+			</div>
+			<img style="margin-left: 60px; width: 50px; height: 50px;" src="img/more.png" alt="More Icon" />
+		</div>
+	</div>
+</footer>

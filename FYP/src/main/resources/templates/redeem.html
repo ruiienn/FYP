@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Redeemed</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/css/bootstrap.js"></script>
+<style>
+.btn-redeem {
+	background-color: #FF2400;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	padding: 10px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/header"></div>
+
+	<div th:replace="fragments/wallet_style"></div>
+	<main>
+		<div class="container">
+			<div class="wallet">
+				<div>
+					<span style="display: block; margin-top: 10px; text-align: center;">Points</span>
+					<img style="width: 50px; height: 50px; margin-left: 70px;"
+						src="img/point.png" />
+				</div>
+				<div class="row">
+					<div class="col text-center" style="margin-top:15px;">
+						<a href="/wallet" target="_self" class="btn custom"> <img
+							style="width: 50px; height: 50px;" class="button-img"
+							src="img/gift.png"/ > <span class="text">Rewards</span></a>
+					</div>
+
+					<div class="col text-center btn-reward">
+					
+						<img style="width: 80px; height: 60px;" src="img/redeem.png" /> <span
+							style="display: block; margin-top: 10px;">Redeemed</span>
+					</div>
+					<hr class="line">
+					<div class="mb-3 col-5" style="margin-left: 20px;">
+						<select name="rewards" id="rewards"
+							style="border-radius: 10px; height: 30px; font-style: italic;">
+							<option value="">Filter By</option>
+							<option value="Lowest to Highest">Lowest to Highest</option>
+							<option value="Highest to Lowest ">Highest to Lowest</option>
+						</select>
+					</div>
+
+				</div>
+				<div class="reward">
+					<img src="/img/point.png"
+						style="height: 50px; width: 60px; padding: 5px 10px;">
+					<div class="details">
+
+						<p>Console</p>
+						<p>
+							100<img src="/img/point.png" class="reward-img">
+						</p>
+					</div>
+					<button class="btn-redeem">Redeemed</button>
+				</div>
+				<div class="reward">
+					<img src="/img/point.png"
+						style="height: 50px; width: 60px; padding: 5px 10px;">
+					<div class="details">
+						<p>Console</p>
+						<p>
+							200 <img src="/img/point.png" class="reward-img">
+						</p>
+					</div>
+					<button class="btn-redeem">Redeemed</button>
+				</div>
+				<div class="reward">
+					<img src="/img/point.png"
+						style="height: 50px; width: 60px; padding: 5px 10px;">
+					<div class="details">
+						<p>Console</p>
+						<p>
+							300<img src="/img/point.png" class="reward-img">
+						</p>
+					</div>
+					<button class="btn-redeem">Redeemed</button>
+				</div>
+
+			</div>
+
+
+			<div class="mt-3" style="position: fixed; bottom: 150px;">
+				<a href="/history" class="btn btn-primary btn-wallet"
+					style="text-decoration: none;"> Points History <img
+					src="/img/history.png"
+					style="width: 30px; height: 30px; margin-right: 10px;">
+
+				</a>
+			</div>
+
+		</div>
+	</main>
+</body>
+</html>
