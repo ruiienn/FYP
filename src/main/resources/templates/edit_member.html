@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Tap 'N' Track - Edit Member</title>
+
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+	<div th:replace="fragments/index_style"></div>
+	<div class="container">
+		<h1>Edit Members</h1>
+		<form class="needs-validation" novalidate th:action="@{/members/edit/{id}(id=${member.id})}" th:object="${member}" method="post"
+				enctype="multipart/form-data">
+				<div class="mb-3 col-5">
+					<label for="member_name" class="form-label">Name</label> 
+					<input
+						id="member_name" class="form-control" type="text" th:field="*{name}" required minlength=5 maxlength=50>
+					<div class="invalid-feedback">Please enter a valid member name</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>	
+				</div>		
+				
+				<div class=	"mb-3 col-5">
+					<label for="member_username" class="form-label">Username</label> 
+					<input
+						id="member_username" class="form-control" type="text" th:field="*{username}" required minlength=5 maxlength=50>
+					<div class="invalid-feedback">Please enter a valid username</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>	
+				</div>
+				
+				<div class="mb-3 col-5">
+					<label for="member_email" class="form-label">Email</label> <input
+						id="member_email" class="form-control" type="text" required min=0
+						th:field="*{email}">
+					<div class="invalid-feedback">Please enter a valid email</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+				</div>	
+				
+				<div class=	"mb-3 col-5">
+					<label for="member_points" class="form-label">Points</label> 
+					<input
+						id="member_points" class="form-control" type="text" th:field="*{points}" >
+					<div class="invalid-feedback">Please enter a valid point number</div>
+					<p class="text-danger" th:if="${#fields.hasErrors('points')}" th:errors="*{points}"></p>	
+				</div>
+				
+				<div class="mb-3 col-5">
+					<label for="member_role" class="form-label">Role </label>
+					 <select id="member_role" class="form-control" th:field="*{role}" required> 
+						<option th:value="${role}" th:text="${role}"></option>
+						<option th:value="ROLE_USER" th:text="ROLE_USER"></option>
+						<option th:value="ROLE_ADMIN" th:text="ROLE_ADMIN"></option>
+					</select>
+				</div>
+					<input type="submit" value="Update Member Details">
+				</div>
+</body>
+</html>

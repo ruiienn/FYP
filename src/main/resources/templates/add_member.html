@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Tap 'N' Track - Add new Member</title>
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<style>
+#thankyouMessage {
+	display: none;
+	position: fixed;
+	top: -100px;
+	/* Initially hidden above the viewport */
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #d4edda;
+	color: #155724;
+	padding: 20px;
+	border: 1px solid #c3e6cb;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: top 0.5s ease-in-out;
+}
+
+#okButton {
+	margin-top: 10px;
+}
+</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="container">
+			<div th:replace="fragments/index_style"></div>
+			<main>
+				<h1>Add new member</h1>
+				<form id="addMember" th:action="@{/members/save}" method="post"
+					th:object="${member}">
+					<div class="mb-3 col-5">
+						<label for="member_name" class="form-label">Member Name: </label>
+						<input id="member_name" type="text" class="form-control"
+							th:field="*{name}" required /> <label for="member_username"
+							class="form-label">Member Username: </label> <input
+							id="member_username" type="text" class="form-control"
+							th:field="*{username}" required /> <label for="member_password"
+							class="form-label">Member Password: </label> <input
+							id="member_password" type="password" class="form-control"
+							th:field="*{password}" required /> <label for="member_email"
+							class="form-label">Member Email: </label> <input
+							id="member_email" type="email" class="form-control"
+							th:field="*{email}" required /> <label for="member_role"
+							class="form-label">Role: </label> <select id="member_role"
+							class="form-control" th:field="*{role}" required>
+							<option value="">Select one</option>
+							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+							<option value="ROLE_USER">ROLE_USER</option>
+						</select>
+					</div>
+					<div class="mt-3">
+						<button type="submit" class="btn btn-primary"
+							style="background-color: purple;">Save</button>
+					</div>
+				</form>
+
+				<!-- Success Message -->
+				<div id="thankyouMessage">
+					<p>Member added successfully!</p>
+					<p>Copy this link to write to NFC Tag!</p>
+					<button id="okButton" class="btn btn-success">Bring me
+						back to Leaderboard</button>
+				</div>
+			</main>
+		</div>
+	</div>
+
+	<script> 
+  // Handle form submission 
+  document.getElementById('addMember').addEventListener('submit', async function (event) { 
+   event.preventDefault(); // Prevent default form submission 
+ 
+   // Collect form data 
+   const formData = new FormData(this); 
+ 
+   try { 
+    // Send form data to the server using fetch 
+    const response = await fetch('/members/save', { 
+     method: 'POST', 
+     body: formData 
+    }); 
+ 
+    if (response.ok) { 
+     // Display success message and slide it down 
+     const thankyouMessage = document.getElementById('thankyouMessage'); 
+     thankyouMessage.style.display = 'block'; 
+ 
+     // Slide the notification down 
+     setTimeout(() => { 
+      thankyouMessage.style.top = '20px'; // Slide down 
+     }, 50); 
+ 
+     // Handle OK button click 
+     document.getElementById('okButton').addEventListener('click', function () { 
+      // Redirect to the leaderboard page after clicking OK 
+      window.location.href = '/'; // Adjust URL as needed 
+     }); 
+    } else { 
+     alert('Failed to add member. Please try again.'); 
+    } 
+   } catch (error) { 
+    console.error('Error adding member:', error); 
+    alert('An error occurred while adding the member. Please try again later.'); 
+   } 
+  }); 
+ </script>
+</body>
+
+</html>
