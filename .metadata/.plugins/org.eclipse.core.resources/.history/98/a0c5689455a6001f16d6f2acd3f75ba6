@@ -1,8 +1,0 @@
-<header>
-    <a href="/" style="text-decoration: none;">
-        <div style="background-color: #607cac; width: 220px; height: 35px; margin-left: 20px; margin-top: 10px; border-radius: 30px; display: flex; align-items: center; padding: 0 10px;">
-            <img src="img/nfc.png" style="width: 30px; height: 30px; margin-left: 10px;">
-            <i style="font-size: 20px; color:black;vertical-align: middle; margin-left: 10px;">Tap 'N' Track</i>
-        </div>
-    </a>
-</header>

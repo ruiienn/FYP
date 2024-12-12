@@ -6,34 +6,12 @@
 <link rel="icon" type="image/png" href="/images/nfc.png">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <script src="/bootstrap/css/bootstrap.js"></script>
-<style>
-.add {
-   	background-color: #5184bf;
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    border-radius: 20px;
-    border: none;
-    display: inline-block;
-    text-align: center;
-    margin-top: 10px;
-    width: auto;
-}
-
-.add-container {
-	display: flex;
-	flex-direction: column;
-	justify-items: left;
-	align-items: center;
-	margin-top: 10px;
-}
-</style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
 	<div th:replace="fragments/index_style"></div>
 	<div class="container">
-	<a href ="/members/add" class="add" >Add visitor</a>
+	<a href ="/members/add" class="visitor" >Add visitor</a>
 		<div class="point">
 			<div>
 				<span style="display: block; margin-top: 10px; text-align: center;">Points</span>

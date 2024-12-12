@@ -1,7 +1,0 @@
-package fyp.tayxinyu;
-
-import org.springframework.data.jpa.repository.JpaRepository;
-
-public class DiplomaRepository extends JpaRepository<Diploma, Integer> {
-
-}

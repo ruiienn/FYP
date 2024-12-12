@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tap 'N' Track - View Members</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<!--<script src="/bootstrap/js/bootstrap.js"></script>-->
+</head>
+<body>
+    <div class="container">
+    <div th:replace="fragments/header"></div>
+	<div class="h2">View Members</div>
+	<div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+
+	<div class="container">
+		<table class="table bordered">
+			<thead>
+				<tr>
+					<th>Member</th>
+					<th>Username</th>
+					<th>Email</th>
+					<th>Role</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="member: ${listMembers}">
+					<td th:text="${member.name}"></td>
+					<td th:text="${member.username}"></td>
+					<td th:text="${member.email}"></td>
+					<td th:text="${member.role}"></td>
+	
+					<td><a th:href="@{/members/edit/{id}(id=${member.id})}">Edit</a>
+						| <a th:href="@{/members/delete/{id}(id=${member.id})}">Delete</a></td>
+				</tr>
+				</th:block>
+			</tbody>
+		</table>
+	<a href="/members/add" class="btn btn-primary" style="background-color: purple;">Add Members</a>
+	</div>
+</body>
+</html>
+

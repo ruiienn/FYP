@@ -7,11 +7,15 @@
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
-		<item key="wholeword" value="true"/>
+		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="pac"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="pfp"/>
+			<item value="150"/>
+			<item value="forget"/>
+			<item value="card-text"/>
 			<item value="pac"/>
 			<item value="add"/>
 			<item value="visitor"/>
@@ -23,13 +27,10 @@
 			<item value="save"/>
 			<item value="point-img"/>
 			<item value="score"/>
-			<item value="&lt;!DOCTYPE HTML&gt;"/>
-			<item value="text-decoration"/>
-			<item value="details"/>
-			<item value="placing"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
+			<item value="icon"/>
 			<item value="pfp"/>
 			<item value="Diploma"/>
 			<item value="diploma"/>
@@ -43,14 +44,13 @@
 			<item value="Activities"/>
 			<item value="images"/>
 			<item value="rewards"/>
-			<item value="reset"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="387"/>
-		<item key="DIALOG_Y_ORIGIN" value="781"/>
+		<item key="DIALOG_X_ORIGIN" value="646"/>
+		<item key="DIALOG_Y_ORIGIN" value="804"/>
 		<item key="DIALOG_WIDTH" value="511"/>
 		<item key="DIALOG_HEIGHT" value="523"/>
-		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|5|0|Segoe UI"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 </section>

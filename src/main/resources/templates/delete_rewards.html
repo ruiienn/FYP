@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+	<title>Sals4u - Delete Product</title>
+
+	<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+
+<body>
+	<div class="container">
+		<h1>Delete rewards</h1>
+		<form th:action="@{/rewards/delete/{id}(id=${rewards.id})}" method="post" th:object="${rewards}">
+			
+			<div class="mb-3 col-5">
+				<label for="rewards_description" class="form-label">item: </label>
+				<input id="rewards_description" type="text" class="form-control" th:field="*{description}"/>
+				
+				
+			</div>
+			<div class="mt-3 mb-5">
+				<input type="submit" value= "Delete REwards">
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

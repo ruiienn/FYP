@@ -11,91 +11,78 @@
 	background-color: #ececeb;
 	border-radius: 30px;
 	width: 80%;
-	height: 500px;
-	margin: 5% 10% 0%;
-	padding: 15px;
+	height: 600px;
+	padding: 20px;
 	border: 2px solid #06B48B;
 	display: flex;
-	align-items: flex-start;
+	flex-direction: column;
+	align-items: center;
 	justify-content: center;
-	flex-wrap: wrap;
+	text-align: center;
+	position: relative;
 }
 
+
 .pfp-img {
-	margin-top: 50px;
 	background-color: white;
 	border-radius: 50%;
 	width: 120px;
 	height: 120px;
-	position: absolute;
-	margin-top: 30px;
-	top: 10%;
-	left: 30%;
+	position: relative;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.label-login {
+	margin: 20px 0 0 20px;
+}
+
+.input-login {
+	display: block;
+	margin: 5px 0 0 20px;
+	border-radius: 20px;
+	border: none;
+	width: 100%;
+	height: 40px;
 }
 
 .forget {
 	display: block;
 	color: black;
-	text-align: left;
+	text-align: center;
 	margin-top: 20px;
-	margin-left: 30px;
 }
 
 .forget:hover {
 	color: #4C2B20;
 }
 
-.label-login {
-	margin-left: 30px;
-}
-
-.input-login {
-	display: block;
-	margin-left: 30px;
-	border-radius: 20px;
-	border: none;
-	width: 250px;
-	height: 40px;
-}
-
-.btn-login {
-	font-size: 20px;
-	color: white;
-	text-decoration: none;
-	background-color: #5184bf;
-	width: 180px;
-	height: 50px;
-	border-radius: 30px;
-	display: block;
-	padding: 10px;
-	margin-left: 130px;;
-}
 </style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
 	<div class="container">
 		<div class="profile">
-			<b><i> My Profile Details </i></b>
+			<i>My Profile Details</i>
 
 			<div>
-				<label class="label-login" style="margin-top: 220px;" for="username">
-					Username</label> <input class="input-login" type="text" id="username">
+				<label class="label-login" for="username">Username</label> <input
+					class="input-login" type="text" id="username">
 			</div>
 			<div>
-				<label class="label-login" style="margin-top: 20px;" for="email">
-					Email</label> <input class="input-login" type="text" id="email">
+				<label class="label-login" for="email">Email</label> <input
+					class="input-login" type="text" id="email">
 			</div>
 
 			<div>
-				<label class="label-login" style="margin-top: 20px;" for="pwd">
-					Password</label> <input class="input-login" type="text" id="pwd">
-
+				<label class="label-login" for="pwd">Password</label> <input
+					class="input-login" type="text" id="pwd">
 			</div>
-			<a href="/forget" class="forget"> Change Password </a>
+
+			<a href="/forget" class="forget">Change Password</a>
+
 			<div>
-				<a href="/" target="_self" class="btn-login"
-					style="margin-top: 100px; text-align: center"> Save Changes </a>
+				<a href="/" target="_self" class="btn">Save Changes</a>
 			</div>
 		</div>
 	</div>

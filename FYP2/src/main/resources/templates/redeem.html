@@ -9,7 +9,7 @@
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
-	<div th:replace="fragments/redeem_style"></div>
+	<div th:replace="fragments/rewards_style"></div>
 	<div class="container">
 		<div class="rewards">
 			<div>
@@ -51,20 +51,14 @@
 						50 <img src="/images/point.png" class="point-img">
 					</p>
 				</div>
-				<button class="btn-redeem">Redeem</button>
 			</div>
 		</div>
-
-
+		<div>
+			<button class="history" onclick="window.location.href='/history'">
+				<span>Points History</span> <img src="/images/history.png"
+					style="width: 30px; height: 30px; margin-left: 10px;">
+			</button>
+		</div>
 	</div>
-	<div class="history">
-		<a href="/history" style="text-decoration: none; color: black;">
-			Points History <img src="/images/history.png"
-			style="width: 30px; height: 30px; margin-right: 10px;">
-		</a>
-	</div>
-	</div>
-
-
 </body>
 </html>

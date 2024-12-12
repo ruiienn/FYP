@@ -1,0 +1,177 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add Member</title>
+<link rel="icon" type="image/png" href="/img/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<style>
+#thankyouMessage {
+	display: none;
+	position: fixed;
+	top: -100px;
+	/* Initially hidden above the viewport */
+	left: 50%;
+	transform: translateX(-50%);
+	background-color: #d4edda;
+	color: #155724;
+	padding: 20px;
+	border: 1px solid #c3e6cb;
+	border-radius: 5px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	transition: top 0.5s ease-in-out;
+}
+
+#okButton {
+	margin-top: 10px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/style"></div>
+	<div class="container">
+		<div class="tnt">
+			<i>Add member <img src="/images/member.png" class="tnt-icon"></i>
+			<div id="overflow">
+				<form id="addMember" th:action="@{/members/save}"
+					th:object="${member}" method="post" enctype="multipart/form-data"
+					novalidate>
+					<div>
+						<label for="select" class="label-tnt">Avatar</label> <select
+							id="select" class="input-tnt" th:field="*{avatar}" required>
+							<option value="">Select your avatar:</option>
+							<option th:each="avatar : ${avatarList}" th:value="${avatar.id}"
+								th:text="${avatar.name}"></option>
+							<option value="/avatar/cat.jpg">Cat</option>
+							<option value="/avatar/dog.jpg">Dog</option>
+							<option value="/avatar/duck.jpg">Duck</option>
+							<option value="/avatar/penguin.jpg">Penguin</option>
+							<option value="/avatar/rabbit.jpg">Rabbit</option>
+							<option value="/avatar/rat.jpg">Rat</option>
+						</select>
+						<p class="text-danger" th:if="${#fields.hasErrors('avatar')}"
+							th:errors="*{avatar}"></p>
+					</div>
+					<div class="display">
+						<p>Your Selected Avatar:</p>
+						<img id="avatar" src="" class="avatar" />
+					</div>
+					 <!--  
+					<div>
+						<label for="member_name" class="label-tnt">Member Name </label> <input
+							id="member_name" type="text" class="input-tnt" th:field="*{name}"
+							required />
+						<p class="text-danger" th:if="${#fields.hasErrors('name')}"
+							th:errors="*{name}"></p>
+					</div> 
+					-->
+					<div>
+						<label for="member_role" class="label-tnt">Role </label> <select
+							id="member_role" class="input-tnt" th:field="*{role}" required>
+							<option value="">Select member's role</option>
+							<option value="ROLE_ADMIN">ROLE_ADMIN</option>
+							<option value="ROLE_USER">ROLE_USER</option>
+						</select>
+					</div>
+					<div>
+						<label for="member_email" class="label-tnt"> Email </label> <input
+							id="member_email" type="email" class="input-tnt"
+							th:field="*{email}" required />
+						<p class="text-danger" th:if="${#fields.hasErrors('email')}"
+							th:errors="*{email}"></p>
+					</div>
+					<div>
+						<label for="member_username" class="label-tnt"> Username </label>
+						<input id="member_username" type="text" class="input-tnt"
+							th:field="*{username}" required />
+						<p class="text-danger" th:if="${#fields.hasErrors('username')}"
+							th:errors="*{username}"></p>
+					</div>
+					<div>
+						<label for="member_password" class="label-tnt"> Password </label>
+						<input id="password" type="password" class="input-tnt"
+							th:field="*{password}" required />
+						<p class="text-danger" th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}"></p>
+					</div>
+					<div class="show-container">
+						<div class="show">
+							<input type="checkbox" onclick="myFunction()" class="show">
+							<span style="padding: 0 10px;"> Show Password </span>
+						</div>
+					</div>
+					<div class="mt-3">
+						<button type="submit" class="btn">Add Member</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Success Message -->
+	<div id="thankyouMessage">
+		<p>Member added successfully!</p>
+		<button id="okButton" class="btn btn-success">Bring me back
+			to Leaderboard</button>
+	</div>
+	<script>
+    const imageSelect = document.getElementById('select');
+    const displayAvatar = document.getElementById('avatar');
+
+    // Event listener for dropdown change
+    imageSelect.addEventListener('change', function () {
+        const selectedAvatar = imageSelect.value;
+        if (selectedAvatar) {
+            displayAvatar.src = selectedAvatar;
+            displayAvatar.alt = `Selected avatar: ${this.options[this.selectedIndex].text}`;
+        }
+    }); // Closing brace for the change event listener added here.
+
+    function myFunction() {
+		var x = document.getElementById("password");
+		if (x.type === "password") {
+			x.type = "text";
+		} else {
+			x.type = "password";
+		}
+	}
+    // Handle form submission
+    document.getElementById('addMember').addEventListener('submit', async function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect form data
+        const formData = new FormData(this);
+
+        try {
+            // Send form data to the server using fetch
+            const response = await fetch('/members/save', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                // Display success message and slide it down
+                const thankyouMessage = document.getElementById('thankyouMessage');
+                thankyouMessage.style.display = 'block';
+
+                // Slide the notification down
+                setTimeout(() => {
+                    thankyouMessage.style.top = '20px'; // Slide down
+                }, 50);
+
+                // Handle OK button click
+                document.getElementById('okButton').addEventListener('click', function () {
+                    // Redirect to the leaderboard page after clicking OK
+                    window.location.href = '/'; // Adjust URL as needed
+                });
+            } else {
+                alert('Failed to add member. Please try again.');
+            }
+        } catch (error) {
+            console.error('Error adding member:', error);
+            alert('An error occurred while adding the member. Please try again later.');
+        }
+    });
+</script>
+</body>
+</html>

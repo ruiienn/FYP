@@ -1,0 +1,135 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Points History</title>
+<link rel="icon" type="image/png" href="/images/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<style>
+.history {
+	background: white;
+	width: 90%;
+	height: 100px;
+	border: 1px solid black;
+	border-radius: 15px;
+	margin: 10px 0px 10px 15px;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.details {
+	display: flex;
+	flex-direction: column;
+	align-items: left;
+	margin-top: 25px;
+}
+
+.history-img {
+	width: 40px;
+	height: 40px;
+	margin-left: 15px;
+}
+
+.earn {
+	color: #06B48B;
+	font-size: 25px;
+}
+
+.deduct {
+	color: #FF2400;
+	font-size: 25px;
+}
+
+.description {
+	margin-left: 10px;
+	margin-top: -10px;
+	font-size: 15px;
+}
+
+.msg {
+	text-align: center;
+	margin-top: 20px;
+	color: #6c757d;
+}
+
+.history {
+	background-color: #E6E2D5;
+	border: 2px solid #06B48B;
+	color: #6c757d;
+	border-radius: 20px;
+	padding: 10px 15px;
+	margin-top: 10px;
+	width: auto;
+	height: auto;
+	display: inline-block;
+}
+
+.img {
+	width: 40px;
+	height: 40px;
+}
+</style>
+</head>
+<body>
+	<div th:replace="fragments/style"></div>
+	<div class="container">
+		<div class="tnt">
+			<div style="padding-top: 15px;">
+				<i> Points History <img src="/images/history.png"
+					class="tnt-icon">
+				</i>
+			</div>
+
+			<!-- User have not log in -->
+			<div sec:authorize="!isAuthenticated()">
+				<p class="msg">
+
+					<button class="history" onclick="window.location.href='/login'">
+						<span>Log In</span> <img class="img" src="images/login.png" />
+					</button>
+
+					to view your points history
+				</p>
+			</div>
+
+			<!-- User logged in but no history -->
+			<div sec:authorize="isAuthenticated()">
+				<div th:if="${#lists.isEmpty(pointsHistory)}">
+					<p class="msg">
+						No history yet! <br /> Psss: earn points by participating in
+						<button class="history"
+							onclick="window.location.href='/activities'">
+							<span>Activities</span> <img class="img" src="images/point.png" />
+						</button>
+						to exchange for attractive
+						<button class="history" onclick="window.location.href='/rewards'">
+							<span>Rewards</span> <img class="img" src="images/gift.png" />
+						</button>
+				</div>
+
+				<!-- User have history -->
+				<div th:unless="${#lists.isEmpty(pointsHistory)}">
+					<div class="history">
+						<div class="details">
+							<p
+								th:text="${history.earned ? '+' + history.points : '-' + history.points}">+100</p>
+							<p class="description"
+								th:text="'Earned at ' + ${history.activity.activity}">Description</p>
+						</div>
+						<div class="history">
+							<div class="details">
+								<p class="deduct">
+									-100<img src="/images/point.png" class="history-img">
+								</p>
+								<p class="description">Type: POINTS REDEMPTION</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

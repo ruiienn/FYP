@@ -6,33 +6,6 @@
 <link rel="icon" type="image/png" href="/img/nfc.png">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <script src="/bootstrap/css/bootstrap.js"></script>
-<style>
-.activity {
-	background-color: #ececeb;
-	border-radius: 20px;
-	border: 2px solid #06B48B;
-	width: 90%;
-	height: auto;
-	position: fixed;
-	margin: 2% 10%;
-	position: relative;
-	padding: 50px;
-}
-
-.label-activity {
-	margin: 20px 0 0 20px;;
-}
-
-.input-activity {
-	display: block;
-	margin: 5px 0 0 30px;
-	border-radius: 10px;
-	border: none;
-	width: 80%;
-	height: 40px;
-}
-
-</style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
@@ -40,7 +13,7 @@
 
 	<div class="container">
 		<div class="activity" style="padding: 50px;">
-			<h1>Edit Activity</h1>
+			<i>Edit Activity</i>
 			<form class="needs-validation"
 				th:action="@{'/activities/edit/' + ${activities.id}}"
 				th:object="${activities}" method="post"
@@ -114,7 +87,7 @@
 						th:errors="*{points}"></p>
 				</div>
 				<div class="btn-container">
-					<a href="/activities/add" class="btn-add">Update activity</a>
+					<input class="btn" type="submit" value="Edit activity">
 				</div>
 			</form>
 			<!-- Form Validation -->

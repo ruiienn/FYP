@@ -6,26 +6,13 @@
 <link rel="icon" type="image/png" href="/images/nfc.png">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <script src="/bootstrap/css/bootstrap.js"></script>
-<style>
-.activity {
-	background-color: #ececeb;
-	border-radius: 20px;
-	border: 2px solid #06B48B;
-	width: 90%;
-	height: auto;
-	position: fixed;
-	margin: 2% 10%;
-	position: relative;
-	padding: 50px;
-}
-</style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
 	<div th:replace="fragments/activities_style"></div>
 	<div class="container">
 		<div class="activity">
-			<h1>Add Activity</h1>
+			<i> Add Activity</i>
 			<form class="needs-validation" th:action="@{/activities/save}"
 				th:object="${activities}" method="post"
 				enctype="multipart/form-data" novalidate>
@@ -96,7 +83,7 @@
 						th:errors="*{points}"></p>
 				</div>
 				<div class="btn-container">
-					<input type="submit" value="Add more activities">
+					<input class="btn" type="submit" value="Add activity">
 				</div>
 			</form>
 			<!-- Form Validation -->
