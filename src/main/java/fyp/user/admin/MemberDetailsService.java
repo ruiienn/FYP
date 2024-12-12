@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+<<<<<<< HEAD
 
 /**
  * @author xandr
@@ -33,5 +34,24 @@ public class MemberDetailsService implements UserDetailsService {
 			throw new UsernameNotFoundException("Could not find user");
 		}
 		return new MemberDetails(member);
+=======
+/**
+ * @author xandr
+ *
+ */
+public class MemberDetailsService implements UserDetailsService {
+	
+	@Autowired
+	private MemberRepository memberRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		Member member = memberRepository.findByUsername(username);
+		if(member == null) {
+			throw new UsernameNotFoundException("Could not find user");
+		}
+		return new MemberDetails(member);
+	
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 	}
 }

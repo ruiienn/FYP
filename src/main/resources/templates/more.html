@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>More</title>
+    <link rel="icon" type="image/png" href="/images/nfc.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <!-- Include external styles -->
+    <div th:replace="fragments/style"></div>
+    <div th:replace="fragments/more_style"></div>
+
+    <!-- Main content -->
+    <div class="container mt-4">
+        <div class="more">
+            <!-- Profile Link -->
+            <div class="mb-3">
+                <a href="/profile" target="_self" class="background d-flex align-items-center">
+                    <img class="img me-2" src="/images/profile.png" alt="Profile" />
+                    <span class="text">Profile</span>
+                </a>
+            </div>
+
+            <!-- User Guide Link -->
+            <div class="mb-3">
+                <a href="/NFC GUIDE.pdf" target="_self" class="background d-flex align-items-center">
+                    <img class="img me-2" src="/images/guide.png" alt="User Guide" />
+                    <span class="text">User Guide</span>
+                </a>
+            </div>
+
+            <!-- Feedback Form Link -->
+            <div class="mb-3">
+                <a href="https://forms.gle/tJ3aNRu56ZBdpijv7" target="_blank" class="background d-flex align-items-center">
+                    <img class="img me-2" src="/images/feedback.png" alt="Feedback" />
+                    <span class="text">Feedback</span>
+                </a>
+            </div>
+
+            <!-- Delete Account Button -->
+            <div class="mb-3">
+                <button class="background d-flex align-items-center" onclick="confirmDelete()">
+                    <img class="img me-2" src="/images/delete.png" alt="Delete Account" />
+                    <span class="text">Delete Account</span>
+                </button>
+            </div>
+
+            <!-- Log Out Button -->
+            <div class="mb-3">
+                <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+                    <button class=" background d-flex align-items-center" type="submit">
+                        <img class="img me-2" src="/images/log out.png" alt="Log Out" />
+                        <span class="text">Log Out</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function confirmDelete() {
+            if (confirm("Are you sure you want to delete your account?")) {
+                // Redirect or trigger delete account logic
+                window.location.href = '/delete-account';
+            }
+        }
+    </script>
+</body>
+</html>

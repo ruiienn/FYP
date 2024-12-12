@@ -36,6 +36,7 @@ public class Member {
 	@Size(min=5, max=50, message="Username must be between 5 to 50 characters long")
 	private String username;
 	
+<<<<<<< HEAD
 	@NotEmpty(message="Password cannot be empty!")
 	@Size(min=1, max=100, message="Password must be between 5 to 50 characters long")
 	private String password;
@@ -94,6 +95,88 @@ public class Member {
 	public void setRole(String role) {
 		this.role = role;
 	}
+=======
+	private String imagesName;
+	
+	@NotEmpty(message="Password cannot be empty!")
+	@Size(min=1, max=100, message="Password must be between 5 to 50 characters long")
+	private String password;
+	
+	@NotEmpty(message="Email cannot be empty!")
+	@Size(min=5, max=50, message="Email must be valid!")
+	private String email;
+	
+	private int points;
+	
+	
+	private String role;
+	
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
+	}
+
+	public String getImagesName() {
+		return imagesName;
+	}
+
+	public void setImagesName(String imagesName) {
+		this.imagesName = imagesName;
+	}
+	
+	
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 
 
 }

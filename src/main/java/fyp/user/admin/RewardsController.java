@@ -32,6 +32,7 @@ import jakarta.validation.Valid;
 
 @Controller
 public class RewardsController {
+<<<<<<< HEAD
   
   @Autowired
   private RewardsRepository rewardsRepository;
@@ -139,3 +140,118 @@ public class RewardsController {
   }
 
 }
+=======
+	
+	@Autowired
+	private RewardsRepository rewardsRepository;
+	
+	@GetMapping("/rewards")
+	public String viewRewards(Model model) {
+		
+		List<Rewards> listRewards = rewardsRepository.findAll();
+		model.addAttribute("listRewards", listRewards);
+		return "view_rewards";
+	}
+	
+	@GetMapping("/rewards/add")
+	public String addRewards(Model model) {
+		model.addAttribute("rewards", new Rewards());
+		return "add_rewards";
+	}
+	
+	@GetMapping("/rewards/edit/{rewardsId}")
+	public String editRewards(@PathVariable("rewardsId") Integer rewardsId, Model model) {
+		Rewards rewards = rewardsRepository.findById(rewardsId).orElseThrow(() -> new IllegalArgumentException("Invalid reward ID:" + rewardsId));		
+		model.addAttribute("rewards", rewards);
+		return "edit_rewards";
+	}
+	
+	@GetMapping("/rewards/view/{rewardsId}")
+	public String viewSingleReward(@PathVariable("rewardsId") Integer rewardsId, Model model) {
+	    Rewards rewards = rewardsRepository.findById(rewardsId)
+	            .orElseThrow(() -> new IllegalArgumentException("Invalid reward ID: " + rewardsId));
+	    model.addAttribute("rewards", rewards);
+	    return "view_single_reward";
+	}
+	
+	@PostMapping("/rewards/save")
+	public String saveRewards(@Valid Rewards rewards, BindingResult result, @RequestParam("rewardsImage") MultipartFile imgFile) {
+		
+	    if (result.hasErrors()) {
+	        return "add_rewards";
+	    }
+	    
+	    if(rewards.getStatus() == null || rewards.getStatus().isEmpty()) {
+	    	rewards.setStatus("Available");
+	    }
+	    
+	    String imageName = imgFile.getOriginalFilename();
+	    rewards.setImgName(imageName);
+	    Rewards savedRewards = rewardsRepository.save(rewards);
+	    
+	    try {
+	    	String uploadDir = "uploads/rewards/" +savedRewards.getRewardsId();
+	    	Path uploadPath = Paths.get(uploadDir);
+			System.out.println("Directory path: " + uploadPath);
+			if (!Files.exists(uploadPath)) {
+
+				Files.createDirectories(uploadPath);
+				
+			}
+			Path fileToCreatePath = uploadPath.resolve(imageName);
+			System.out.println("File path: " + fileToCreatePath);
+			Files.copy(imgFile.getInputStream(), fileToCreatePath, StandardCopyOption.REPLACE_EXISTING);
+
+		} catch (IOException io) {
+			io.printStackTrace();
+	    }
+	    
+	    return "redirect:/rewards";
+	}
+	
+	@PostMapping("rewards/delete/{rewardsId}")
+	public String saveDeletedRewards(@PathVariable("rewardsId")Integer rewardsId) {
+		rewardsRepository.deleteById(rewardsId);
+		return "redirect:/rewards";
+	}
+	
+	@PostMapping("/rewards/edit/{rewardsId}")
+	public String savedUpdatedRewards(@PathVariable("rewardsId") Integer rewardsId, @Valid Rewards rewards, 
+										BindingResult result, @RequestParam("rewardsImage") MultipartFile imgFile) {
+		if(result.hasErrors()) {
+			return "edit_rewards";
+		}
+		
+		Rewards existingReward = rewardsRepository.findById(rewardsId).
+				orElseThrow(() -> new IllegalArgumentException("Invalid reward ID:" + rewardsId));
+		
+		existingReward.setDescription(rewards.getDescription());
+		existingReward.setQuantity(rewards.getQuantity());
+		existingReward.setPointsRequired(rewards.getPointsRequired());
+		
+		existingReward.setStatus(rewards.getStatus());
+		
+		if(!imgFile.isEmpty()) {
+			String imageName = imgFile.getOriginalFilename();
+			existingReward.setImgName(imageName);
+			
+			try {
+				String uploadDir = "uploads/rewards/" + rewardsId;
+				Path uploadPath = Paths.get(uploadDir);
+				if(!Files.exists(uploadPath)) {
+					Files.createDirectories(uploadPath);
+				}
+				Path fileToCreatePath = uploadPath.resolve(imageName);
+				Files.copy(imgFile.getInputStream(), fileToCreatePath, StandardCopyOption.REPLACE_EXISTING);
+			}catch(IOException io) {
+				io.printStackTrace();
+			}
+		}
+		
+		rewardsRepository.save(existingReward);
+		return "redirect:/rewards";
+
+	}
+
+}
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git

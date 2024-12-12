@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+<<<<<<< HEAD
     <title>Tap 'N' Track - View Members</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <!--<script src="/bootstrap/js/bootstrap.js"></script>-->
@@ -40,3 +41,128 @@
 </body>
 </html>
 
+=======
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tap 'N' Track - Members</title>
+    <link rel="icon" type="image/png" href="/images/nfc.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <style>
+        .members {
+            background-color: #ececeb;
+            border-radius: 30px;
+            width: 80%;
+            margin: 2% auto;
+            padding: 15px;
+            border: 2px solid #06B48B;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .search {
+            width: 80%;
+            margin: 20px auto;
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+
+        .table {
+            margin-top: 20px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f2f2f2;
+            text-align: left;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .btn-add {
+            background-color: purple;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        .btn-add:hover {
+            background-color: darkpurple;
+        }
+    </style>
+</head>
+<body>
+    <div th:replace="fragments/style"></div>
+    <div class="container">
+        <div class="members">
+            <h2>View Members</h2>
+            <div class="alert alert-primary" role="alert" th:text="${success}" th:if="${success}"></div>
+            
+            <!-- Search functionality -->
+            <input type="text" class="search" placeholder="Search Member by Username" id="filterInput">
+
+            <!-- Members Table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Member</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Points</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="member: ${listMembers}">
+                        <td th:text="${member.name}"></td>
+                        <td th:text="${member.username}"></td>
+                        <td th:text="${member.email}"></td>
+                        <td th:text="${member.role}"></td>
+                        <td th:text="${member.points}"></td>
+                        <td>
+                            <a th:href="@{/members/edit/{id}(id=${member.id})}">Edit</a> |
+                            <a th:href="@{/members/delete/{id}(id=${member.id})}">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById("filterInput");
+            const filter = input.value.toUpperCase();
+            const table = document.querySelector(".table");
+            const tr = table.getElementsByTagName("tr");
+
+            // Loop through table rows and hide those that don't match the search query
+            for (let i = 1; i < tr.length; i++) { // Start at 1 to skip the header row
+                const td = tr[i].getElementsByTagName("td")[1]; // Search by the "Username" column
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Add event listener to search input
+        document.getElementById("filterInput").addEventListener("input", filterTable);
+    </script>
+</body>
+</html>
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git

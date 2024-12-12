@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<<<<<<< HEAD
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -97,3 +98,66 @@
 </body>
 
 </html>
+=======
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Home</title>
+    <link rel="icon" type="image/png" href="/images/nfc.png">
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+    <div th:replace="fragments/style"></div>
+    <div th:replace="fragments/index_style"></div>
+    <div class="container">
+        <a href="/members/add" class="visitor">Add visitor</a>
+        <div class="point">
+            <div>
+                <span style="display: block; margin-top: 10px; text-align: center;">Points</span>
+                <a href="/history">
+                    <img style="width: 40px; height: 40px;" src="images/point.png" />
+                </a>
+            </div>
+            <div>
+                <span style="display: block; text-align: center;">Number of rewards redeemed</span>
+                <a href="/redeem">
+                    <img style="width: 70px; height: 50px; margin-top: 5px;" src="images/redeem.png" />
+                </a>
+            </div>
+        </div>
+        <div class="leader">
+            <i> Leaderboard </i>
+            <!-- Leaderboard Entries -->
+            <div th:each="member, iterStat : ${topMembers}">
+                <div th:class="${iterStat.index == 0 ? 'first' : (iterStat.index == 1 ? 'second' : (iterStat.index == 2 ? 'third' : 'other'))}">
+                    <!-- Trophy Icons for Top 3 -->
+                    <img th:if="${iterStat.index < 3}" th:src="@{/images/{rank}.png(rank=${iterStat.index + 1})}" class="pfp">
+                    <!-- Default Rank Icon for Others -->
+                    <img th:if="${iterStat.index >= 3}" src="/images/profile.png" class="pfp">
+                    <p th:text="${member.name}">Username</p>
+                    <p>
+                        <span th:text="${member.points}">0</span>
+                        <img src="/images/point.png" class="pfp">
+                    </p>
+                </div>
+                <!-- For Members Beyond Top 3 -->
+                <div class="other" th:if="${iterStat.index >= 3}">
+                    <span class="placing" th:text="${iterStat.index + 1}">4</span>
+                    <img src="/images/profile.png" class="pfp">
+                    <div class="details">
+                        <span class="username" th:text="${member.name}">Username</span>
+                        <div class="score">
+                            <span th:text="${member.points}">100</span>
+                            <img src="/images/point.png" class="pfp">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- No Members Message -->
+            <div th:if="${#lists.isEmpty(topMembers)}">
+                <p>No members available for the leaderboard yet!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git

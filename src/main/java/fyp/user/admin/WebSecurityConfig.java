@@ -54,6 +54,7 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((authorizeHttpRequests) -> authorizeHttpRequests
+<<<<<<< HEAD
  
 //		        .requestMatchers("/categories/add", "/categories/edit/*", "/categories/save", "/categories/delete/*").hasRole("ADMIN")
 		        .requestMatchers("/rewards/add", "/rewards/edit/*", "/rewards/save", "/rewards/delete/*").hasRole("ADMIN")
@@ -73,5 +74,19 @@ public class WebSecurityConfig {
  
 	}
 	
+=======
+		        .requestMatchers("/members", "/members/add", "/members/edit/*", "/members/save", "/members/delete/*", "/login", "/activities/add", "/activities/edit", "/activities/delete", "/activities/save").hasRole("ADMIN")
+	        	.requestMatchers("/rewards", "/more", "/avatar", "/profile","/guide", "/feedback", "/", "/images/*").permitAll() //Home page is visible without logging in
+	        	.requestMatchers("/bootstrap/*/*").permitAll() //for static resources, visible to all
+	        	.requestMatchers("/images/*").permitAll() //for static resources, visible to all
+	            .anyRequest().authenticated())//Any other requests not specified earlier , 
+		    .formLogin((login) -> login.loginPage("/login").permitAll().defaultSuccessUrl("/")) //Goes to homepage upon login
+			
+			.logout((logout) -> logout.logoutSuccessUrl("/"))//Goes to homepage upon logout
+		    .exceptionHandling((exceptionHandling) -> exceptionHandling.accessDeniedPage("/403"));
+
+		return http.build();
+	}
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 }
 

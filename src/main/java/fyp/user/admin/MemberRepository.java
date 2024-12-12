@@ -11,6 +11,7 @@
  */
 package fyp.user.admin;
 
+<<<<<<< HEAD
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
@@ -20,6 +21,23 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 	public Member findByUsername(String username);
+=======
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+
+/**
+ * @author xandr
+ *
+ */
+public interface MemberRepository extends JpaRepository<Member, Integer> {
+	Member findByUsername(String username);
+	@Query("SELECT m FROM Member m ORDER BY m.points DESC")
+    List<Member> findAllOrderByPoints();
+	
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 	
 
 }

@@ -4,6 +4,7 @@
 <head>
     <title>Tap 'N' Track - Edit Reward</title>
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<<<<<<< HEAD
     <script src="/bootstrap/js/bootstrap.js"></script>
 </head>
 
@@ -46,3 +47,57 @@
 </body>
 
 </html>
+=======
+</head>
+
+<body>
+    <div th:replace="fragments/header"></div>
+    <div class="container">
+        <h1>Edit Reward</h1>
+        <form th:action="@{/rewards/edit/{rewardsId}(rewardsId=${rewards.rewardsId})}" th:object="${rewards}" method="post" enctype="multipart/form-data">
+            <div class="mb-3 col-5">
+                <label for="description" class="form-label">Description: </label>
+                <input id="description" type="text" class="form-control" th:field="*{description}" required minlength="10" maxlength="150" />
+                <div class="invalid-feedback">Please enter a valid description</div>
+                <p class="text-danger" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+            </div>
+
+            <div class="mb-3 col-5">
+                <label for="quantity" class="form-label">Quantity: </label>
+                <input id="quantity" type="number" class="form-control" th:field="*{quantity}" />
+                <div class="invalid-feedback">Please enter a valid quantity</div>
+                <p class="text-danger" th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></p>
+            </div>
+
+            <div class="mb-3 col-5">
+                <label for="pointsRequired" class="form-label">Points Required: </label>
+                <input id="pointsRequired" type="number" class="form-control" th:field="*{pointsRequired}" />
+                <div class="invalid-feedback">Please enter a valid points required</div>
+                <p class="text-danger" th:if="${#fields.hasErrors('pointsRequired')}" th:errors="*{pointsRequired}"></p>
+            </div>
+            
+               <div class="mb-3 col-5">
+				<label for="status" class="form-label">Status: </label>
+				<select id="status" class="form-control" th:field="*{status}" required>
+					<option value="Available">Available</option>
+					<option value="Unavailable">Unavailable</option>
+					<option value="Out of Stock">Out of Stock</option>
+				</select>
+				<div class="invalid-feedback">Please select a status</div>
+				<p class="text-danger" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></p>
+			</div>
+
+            <div class="mb-3 col-5">
+                <label for="rewardsImage" class="form-label">Rewards Image: </label>
+                <input type="file" name="rewardsImage" class="form-control" accept="images/png, images/jpg, images/jpeg" />
+            </div>
+            
+            <div class="mt-3">
+                <button type="submit" class="btn btn-primary">Update Reward</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git

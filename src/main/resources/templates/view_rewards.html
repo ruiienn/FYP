@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+<<<<<<< HEAD
   <title>Tap 'N' Track</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
@@ -46,6 +47,207 @@
       </tbody>
     </table>
   </div>
+=======
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tap 'N' Track - View Rewards</title>
+<link rel="icon" type="image/png" href="/images/nfc.png">
+<link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+<script src="/bootstrap/js/bootstrap.js"></script>
+<style>
+/* Main Rewards Container */
+.rewards {
+ background-color: #ececeb;
+ border-radius: 30px;
+ padding: 20px;
+ border: 2px solid #06B48B;
+ margin: 5% auto;
+ width: 80%;
+}
+
+/* Section Title */
+.rewards h2 {
+ text-align: center;
+ margin-bottom: 20px;
+ color: #06B48B;
+}
+
+/* Add Reward Button */
+.btn-add {
+ background-color: purple;
+ color: white;
+ padding: 10px 20px;
+ border-radius: 5px;
+ text-decoration: none;
+ display: inline-block;
+ margin: 10px auto;
+}
+
+.btn-add:hover {
+ background-color: darkorchid;
+}
+
+/* Filter Section */
+.filter {
+ display: flex;
+ justify-content: center;
+ margin-bottom: 20px;
+}
+
+.filter select {
+ padding: 5px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+ width: 200px;
+}
+
+/* Rewards Table */
+table {
+ width: 100%;
+ margin-top: 20px;
+}
+
+table img.reward-img {
+ width: 100px;
+ height: 100px;
+ object-fit: cover;
+ border-radius: 10px;
+ margin-top: 10px;
+}
+
+.btn-redeem {
+ background-color: #06B48B;
+ color: white;
+ border: none;
+ border-radius: 5px;
+ padding: 10px;
+ height: 40px;
+ text-decoration: none;
+}
+
+.btn-redeem:hover {
+ background-color: #048c6a;
+}
+
+/* Responsive Card Layout */
+.rewards-row {
+ display: grid;
+ grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+ gap: 20px;
+ margin-top: 20px;
+}
+
+.card {
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ border-radius: 10px;
+ overflow: hidden;
+ text-align: center;
+ background-color: white;
+}
+
+.card img {
+ width: 100%;
+ height: 200px;
+ object-fit: cover;
+}
+
+/* Points History Link */
+.history {
+ background-color: #ececeb;
+ border-radius: 30px;
+ border: 2px solid #06B48B;
+ padding: 15px;
+ margin-top: 30px;
+ text-align: center;
+}
+
+.history a {
+ text-decoration: none;
+ color: black;
+ font-size: 18px;
+ display: inline-flex;
+ align-items: center;
+}
+
+.history img {
+ width: 30px;
+ height: 30px;
+ margin-left: 10px;
+}
+</style>
+</head>
+
+<body>
+ <div th:replace="fragments/style"></div>
+ <div class="container">
+  <div class="rewards">
+   <!-- Add Reward Button -->
+   <div class="text-center">
+    <a href="/rewards/add" class="btn-add">Add Reward</a>
+   </div>
+
+   <!-- Filter Section -->
+   <div class="filter">
+    <select name="rewards" id="rewards" class="form-select"
+     onchange="filterRewards(this.value)">
+     <option value="">Filter By</option>
+     <option value="asc">Lowest to Highest</option>
+     <option value="desc">Highest to Lowest</option>
+    </select>
+   </div>
+   <!-- Display Rewards with Redeem Option -->
+   <div class="rewards-row">
+    <div class="card" th:each="reward : ${listRewards}">
+     <img
+      th:src="@{'/uploads/rewards/' + ${reward.rewardsId} + '/' + ${reward.imgName}}"
+      class="card-img-top">
+     <div class="card-body">
+      <h5 class="card-title" th:text="${reward.description}"></h5>
+      <p class="card-text">
+       Points Required: <span th:text="${reward.pointsRequired}"></span> <img
+        src="/images/point.png" style="width: 20px; height: 20px;">
+      </p>
+      <p class="card-text">
+       Quantity: <span th:text="${reward.quantity}"></span> 
+      </p>
+      <p class="card-text">
+       Status: <span th:text="${reward.status}"></span> 
+      </p>
+      <div>
+       <a
+        th:href="@{/redeem/{rewardsId}(rewardsId=${reward.rewardsId})}"
+        class="btn-redeem">Redeem</a>
+      </div>
+      <div style="margin-top: 20px;">
+       <a
+        th:href="@{/rewards/edit/{rewardsId}(rewardsId=${reward.rewardsId})}"
+        style="color: black; text-decoration: none;">Edit</a> |
+       <a
+        th:href="@{/rewards/delete/{rewardsId}(rewardsId=${reward.rewardsId})}"
+        style="color: black; text-decoration: none;">Delete</a>
+
+      </div>
+     </div>
+    </div>
+
+   </div>
+   <!-- Points History -->
+   <div class="history">
+    <a href="/history"> Points History <img
+     src="/images/history.png">
+    </a>
+   </div>
+  </div>
+
+
+  <!-- JavaScript -->
+  <script>
+   function filterRewards(order) {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set('filter', order);
+    window.location.href = currentUrl.toString();
+   }
+  </script>
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 </body>
 
 </html>

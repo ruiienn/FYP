@@ -50,6 +50,7 @@ public class MemberController {
 
 	@PostMapping("/members/save")
 	public String saveMember(RedirectAttributes redirectAttribute, @Valid Member member, BindingResult bindingResult) {
+<<<<<<< HEAD
 
 		if(bindingResult.hasErrors()) {
 			System.out.println("error");
@@ -88,5 +89,54 @@ public class MemberController {
 		memberRepository.deleteById(id);
 		return "redirect:/members";
 	}
+=======
+	    // Check for validation errors
+	    if (bindingResult.hasErrors()) {
+	        System.out.println("error");
+	        return "index";
+	    }
+
+	    // Encrypt the password
+	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String encodedPassword = passwordEncoder.encode(member.getPassword());
+	    member.setPassword(encodedPassword);
+
+	    // Assign role based on the existing role value
+	    if (member.getRole() == null || (!member.getRole().equals("ROLE_ADMIN") && !member.getRole().equals("ROLE_USER"))) {
+	        member.setRole("ROLE_USER"); // Default role
+	    }
+
+	    // Save member to the repository
+	    memberRepository.save(member);
+
+	    // Flash success message
+	    redirectAttribute.addFlashAttribute("success", "Member registered!");
+
+	    // Redirect to the home page or desired location
+	    return "redirect:/";
+	}
+
+	
+	@GetMapping("/members/edit/{id}")
+	public String editMember(@PathVariable("id") Integer id, Model model) {
+		Member member = memberRepository.getReferenceById(id);
+		model.addAttribute("member", member);
+		return "edit_member";
+	}
+	
+	@PostMapping("/members/edit/{id}")
+	public String savedUpdatedMember(@PathVariable("id") Integer id, Member member) {
+		member.setPassword(memberRepository.getReferenceById(id).getPassword());
+		memberRepository.save(member);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/members/delete/{id}")
+	public String deleteMember(@PathVariable("id") Integer id) {
+		memberRepository.deleteById(id);
+		return "redirect:/members";
+	}
+
+>>>>>>> branch 'main' of https://github.com/ruiienn/FYP.git
 }
 
