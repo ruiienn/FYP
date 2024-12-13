@@ -10,19 +10,19 @@
 <body>
 	<div th:replace="fragments/style"></div>
 	<div th:replace="fragments/index_style"></div>
-	<a sec:authorize="isAuthenticated()" href="/members/add"
-		class="visitor">Add visitor</a>
-	<div class="index">
+	<div class="container">
+		<a href="/members/add" class="visitor"
+			sec:authorize="hasRole('ROLE_ADMIN')">Add visitor</a>
 		<div class="point">
 			<div>
-				<span style="display: block; text-align: center;">My Points</span> <a
-					href="/history"> <img class="icon" src="images/point.png" />
+				<span style="display: block; margin-top: 10px; text-align: center;">Points</span>
+				<a href="/history"> <img class="icon" src="images/point.png" />
 				</a>
 			</div>
 			<div>
-				<span style="display: block; text-align: center; margin-top: 5px;">Number
-					of rewards redeemed</span> <a href="/redeem"> <img
-					style="width: 50px; height: 40px; margin-bottom: 5px;"
+				<span style="display: block; text-align: center;">Number of
+					rewards redeemed</span> <a href="/redeem"> <img
+					style="width: 70px; height: 50px; margin-top: 5px;"
 					src="images/redeem.png" />
 				</a>
 			</div>
@@ -39,42 +39,53 @@
 				class="tnt-icon"></i>
 			<!-- Leaderboard Entries -->
 			<div id="overflow">
-				<div class="tnt-row">
-					<div th:each="member, iterStat : ${topMembers}">
+				<!-- Top 3 Ranks Section -->
+				<div class="tnt-row top-three">
+					<div th:each="member, iterStat : ${topMembers}"
+						th:if="${iterStat.index < 3}">
 						<div
-							th:class="${iterStat.index == 0 ? 'first' : (iterStat.index == 1 ? 'second' : (iterStat.index == 2 ? 'third' : 'other'))}">
-							<!-- Trophy Icons for Top 3 -->
-							<img th:if="${iterStat.index < 3}"
-								th:src="@{/images/{rank}.png(rank=${iterStat.index + 1})}"
-								class="pfp">
-							<!-- Default Rank Icon for Others -->
-							<img th:if="${iterStat.index >= 3}" src="/images/profile.png"
-								class="pfp">
-							<p th:text="${member.name}">Username</p>
-							<p>
-								<span th:text="${member.points}">0</span> <img
-									src="/images/point.png" class="icon">
-							</p>
-						</div>
-						<!-- For Members Beyond Top 3 -->
-						<div class="other" th:if="${iterStat.index >= 3}">
-							<span class="placing" th:text="${iterStat.index + 1}">4</span> <img
-								src="/images/profile.png" class="pfp">
-							<div class="details">
-								<span class="username" th:text="${member.name}">Username</span>
+							th:class="${iterStat.index == 0 ? 'first' : (iterStat.index == 1 ? 'second' : 'third')}">
+							<!-- Display Trophy Icons for Top 3 -->
+							<img th:if="${iterStat.index == 0}" th:src="@{/images/first.png}"
+								class="rank"> <img th:if="${iterStat.index == 1}"
+								th:src="@{/images/second.png}" class="rank"> <img
+								th:if="${iterStat.index == 2}" th:src="@{/images/third.png}"
+								class="rank">
+
+							<!-- Avatar Image -->
+							<img th:src="${member.avatar}" alt="Avatar" class="pfp" />
+
+							<!-- Username & Points -->
+							<div>
+								<p th:text="${member.username}">Username</p>
 								<div class="score">
-									<span th:text="${member.points}">100</span> <img
+									<span th:text="${member.points}">Points</span> <img
 										src="/images/point.png" class="icon">
 								</div>
 							</div>
 						</div>
 					</div>
-					<!-- No Members Message -->
-					<div th:if="${#lists.isEmpty(topMembers)}">
-						<p>No members available for the leaderboard yet!</p>
+				</div>
+				<!-- 4th and 5th -->
+				<div class="tnt-row">
+					<div th:each="member, iterStat : ${topMembers}"
+						th:if="${iterStat.index >= 3 && iterStat.index < 5}">
+						<div class="details">
+							<span class="placing" th:text="${iterStat.index + 1}"></span> <img
+								th:src="${member.avatar}" alt="Avatar" class="pfp">
+							<div class="username">
+								<span class="username" th:text="${member.username}"></span>
+								<div class="score"
+									style="display: flex; align-items: center; gap: 5px;">
+									<span th:text="${member.points}">Points</span> <img
+										src="/images/point.png" class="icon">
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 </body>
 </html>

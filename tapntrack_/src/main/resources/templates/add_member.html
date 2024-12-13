@@ -36,6 +36,7 @@
 				<form id="addMember" th:action="@{/members/save}"
 					th:object="${member}" method="post" enctype="multipart/form-data"
 					novalidate>
+					<input type="hidden" id="memberId" th:value="${memberId}" />
 					<div>
 						<label for="select" class="label-tnt">Avatar</label> <select
 							id="select" class="input-tnt" th:field="*{avatar}" required>
@@ -101,7 +102,7 @@
 						</div>
 					</div>
 					<div class="mt-3">
-						<button type="submit" class="btn">Add Member</button>
+						<button type="submit" class="btn" id="addMember">Add Member</button>
 					</div>
 				</form>
 			</div>
@@ -136,42 +137,24 @@
 		}
 	}
     // Handle form submission
-    document.getElementById('addMember').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent default form submission
+document.getElementById("addMember").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission behavior
 
-        // Collect form data
-        const formData = new FormData(this);
+    // Fetch the member ID from the server using a hidden input or response
+    const memberId = document.querySelector("#memberId").value; // Replace with the actual ID source
 
-        try {
-            // Send form data to the server using fetch
-            const response = await fetch('/members/save', {
-                method: 'POST',
-                body: formData
-            });
+    // Generate the link with the member ID
+    const generatedLink = `/members/add?memberId=${memberId}`;
 
-            if (response.ok) {
-                // Display success message and slide it down
-                const thankyouMessage = document.getElementById('thankyouMessage');
-                thankyouMessage.style.display = 'block';
+    // Display the link dynamically
+    const thankyouMessage = document.getElementById("thankyouMessage");
+    const generatedLinkElement = document.getElementById("generatedLink");
+    
+    generatedLinkElement.innerHTML = `<a href="${generatedLink}">${generatedLink}</a>`;
+    thankyouMessage.style.display = "block"; // Show the thank-you message
+});
 
-                // Slide the notification down
-                setTimeout(() => {
-                    thankyouMessage.style.top = '20px'; // Slide down
-                }, 50);
-
-                // Handle OK button click
-                document.getElementById('okButton').addEventListener('click', function () {
-                    // Redirect to the leaderboard page after clicking OK
-                    window.location.href = '/'; // Adjust URL as needed
-                });
-            } else {
-                alert('Failed to add member. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error adding member:', error);
-            alert('An error occurred while adding the member. Please try again later.');
-        }
-    });
 </script>
+
 </body>
 </html>

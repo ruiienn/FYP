@@ -74,7 +74,7 @@ body {
 .icon {
 	width: 30px;
 	height: 30px;
-	margin-right: 10px;
+	margin:0 10px;
 }
 
 .text {
@@ -333,7 +333,7 @@ body {
 			th:src="@{/images/point.png}" /> <span class="text">Activities</span>
 		</a>
 		<!-- Members -->
-		<a sec:authorize="isAuthenticated()" href="/members" target="_self">
+		<a sec:authorize="hasRole('ROLE_ADMIN')" href="/members" target="_self">
 			<img class="icon" th:src="@{/images/member.png}" /> <span
 			class="text">Members</span>
 		</a>

@@ -17,20 +17,22 @@
 }
 
 .leader {
-	background-color: #ececeb;
-	border: 2px solid #06B48B;
-	border-radius: 30px;
-	width: 70%;
-	top: 23%;
-	left: 15%;
-	padding: 15px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
-	position: fixed;
-	margin-top: 220px;
+    background-color: #ececeb;
+    border: 2px solid #06B48B;
+    border-radius: 30px;
+    width: 90%;
+    max-height: 450px; 
+ 	margin-top: 320px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; 
+    overflow-y: auto;
+    position: relative;
+    scrollbar-color: transparent transparent; 
 }
+
 
 .leader i {
 	text-align: center;
@@ -47,7 +49,6 @@
 	padding: 20px 30px;
 	border: none;
 	border-radius: 20px;
-	margin: 40px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -66,57 +67,43 @@
 	background-color: #DAAA5E;
 }
 /* 4th place onwards card*/
-.other {
-	background-color: #FFFFFF;
-	width: 100%;
-	height: auto;
-	padding: 20px 30px;
-	border: none;
-	border-radius: 20px;
-	margin: 30px 50px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-wrap: wrap;
+.details {
+    background-color: #f9f9f9;
+    width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-.placing {
-	padding-right: 20px;
+.username {
+	display: block;
 	flex-direction: column;
+	text-align: center;
+	align-items: center;
 }
-
-.pfp {
+/*rank img CSS */
+.rank {
 	height: 60px;
 	width: 60px;
 	margin-top: 10px;
 }
-
-.details {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	margin-left: 10px;
+/* avatar img CSS */
+.pfp {
+	width: 150px;
+	height: 150px;
+	border-radius: 8px;
+	margin: 10px;
 }
 
-.username {
-	margin-right: 20px;
-}
-
-.score {
-	display: flex;
-	align-items: center;
-}
-
-.score img {
-	margin-left: 5px;
-}
 /* Points History Button */
 .history {
 	background-color: #E6E2D5;
 	border: 2px solid #06B48B;
 	color: black;
 	border-radius: 20px;
-	padding: 5px 0 5px 10px ;
+	padding: 5px 0 5px 10px;
 	margin-top: 5px;
 }
 </style>
