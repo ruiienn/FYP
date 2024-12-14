@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.validation.Valid;
 
+
 /**
  * @author xandr
  *
@@ -35,17 +36,17 @@ import jakarta.validation.Valid;
 public class MemberController {
 	@Autowired
 	private MemberRepository memberRepository;
-
-	@Autowired
+	
+	 @Autowired
 	private MemberDetailsService memberDetailsService;
-
+	
 	@GetMapping("/members")
 	public String viewMembers(Model model) {
 		List<Member> listMembers = memberRepository.findAll();
 		model.addAttribute("listMembers", listMembers);
 		return "view_member";
 	}
-
+	
 	@GetMapping("/members/add")
 	public String addMember(Model model) {
 		model.addAttribute("member", new Member());
@@ -53,54 +54,39 @@ public class MemberController {
 	}
 
 	@PostMapping("/members/save")
-	public String saveMember(@Valid Member member, BindingResult bindingResult, Model model,
-			RedirectAttributes redirectAttributes) {
-		// Check for validation errors
-		if (bindingResult.hasErrors()) {
-			model.addAttribute("error", "Validation failed. Please check the form fields.");
-			return "add_member"; // Return to the add member form for correction
-		}
+	public String saveMember(
+	    @Valid Member member,
+	    BindingResult bindingResult,
+	    Model model,
+	    RedirectAttributes redirectAttributes
+	) {
+	    // Check for validation errors
+	    if (bindingResult.hasErrors()) {
+	        model.addAttribute("error", "Validation failed. Please check the form fields.");
+	        return "add_member"; // Return to the add member form for correction
+	    }
 
-		// Encrypt the password
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String encodedPassword = passwordEncoder.encode(member.getPassword());
-		member.setPassword(encodedPassword);
+	    // Encrypt the password
+	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String encodedPassword = passwordEncoder.encode(member.getPassword());
+	    member.setPassword(encodedPassword);
 
-		// Assign default role if not provided
-		if (member.getRole() == null
-				|| (!member.getRole().equals("ROLE_ADMIN") && !member.getRole().equals("ROLE_USER"))) {
-			member.setRole("ROLE_USER");
-		}
+	    // Assign default role if not provided
+	    if (member.getRole() == null || (!member.getRole().equals("ROLE_ADMIN") && !member.getRole().equals("ROLE_USER"))) {
+	        member.setRole("ROLE_USER");
+	    }
 
-		// Save the member
-		Member savedMember = memberRepository.save(member);
+	    // Save the member
+	    Member savedMember = memberRepository.save(member);
 
-		// Generate the unique link using the member's ID
-		String uniqueLink = "http://localhost:8080/members/" + savedMember.getId();
+	    // Generate the unique link using the member's ID
+	    String uniqueLink = "http://localhost:8080/members/" + savedMember.getId();
 
-		// Add the success flash message with the unique link
-		redirectAttributes.addFlashAttribute("success", "Member successfully added! Unique link: " + uniqueLink);
+	    // Add the success flash message with the unique link
+	    redirectAttributes.addFlashAttribute("success", "Member successfully added! Unique link: " + uniqueLink);
 
-		// Redirect to the page displaying all members
-		return "redirect:/members";
+	    return "redirect:/members";
 	}
-
-//	@GetMapping("/members/visitor")
-//	public String addVisitor(Model model) {
-//	    model.addAttribute("member", new Member());
-//	    return "add_visitor";
-//	}
-//
-//	@PostMapping("/members/visitor")
-//	public String saveVisitor(@Valid Member member, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-//	    if (member.getRole() == null) {
-//	        member.setRole("ROLE_VISITOR");
-//	    }
-//	    memberRepository.save(member);
-//	    redirectAttributes.addFlashAttribute("success", "Visitor successfully added to the member list!");
-//	    return "redirect:/members";
-//	}
-
 
 
 	@GetMapping("/members/edit/{id}")
@@ -109,77 +95,71 @@ public class MemberController {
 		model.addAttribute("member", member);
 		return "edit_member";
 	}
-
+	
 	@PostMapping("/members/edit/{id}")
 	public String savedUpdatedMember(@PathVariable("id") Integer id, Member member) {
 		member.setPassword(memberRepository.getReferenceById(id).getPassword());
 		memberRepository.save(member);
 		return "redirect:/";
 	}
-
+	
 	@GetMapping("/members/delete/{id}")
 	public String deleteMember(@PathVariable("id") Integer id) {
 		memberRepository.deleteById(id);
 		return "redirect:/members";
 	}
-
+	
 	// View single member
-	@GetMapping("/members/{id}")
-	public String viewSingleMember(@PathVariable("id") Integer id, Model model) {
+		@GetMapping("/members/{id}")
+		public String viewSingleMember(@PathVariable("id") Integer id, Model model) {
 
-		Member member = memberRepository.getReferenceById(id);
-		model.addAttribute("member", member);
+			Member member = memberRepository.getReferenceById(id);
+			model.addAttribute("member", member);
 
-		return "view_single_member";
-	}
-
-	@GetMapping("/profile")
-	public String viewProfile(Model model, Principal principal) {
-		String username = principal.getName(); // Get the current logged-in user's username
-		Member member = memberRepository.findByUsername(username);
-
-		if (member != null) {
-			return "redirect:/members/" + member.getId(); // Redirect to the member's view page using their ID
+			return "view_single_member";
 		}
+		
+    @GetMapping("/profile")
+    public String viewProfile(Model model, Principal principal) {
+        String username = principal.getName(); // Get the current logged-in user's username
+        Member member = memberRepository.findByUsername(username);
+        model.addAttribute("member", member);
+        return "profile"; // Thymeleaf template to view profile
+    }
 
-		// If no member found, show an error or redirect somewhere else
-		return "redirect:/"; // or return a custom error page
-	}
+    // Add method to edit the current user's profile
+    @GetMapping("/profile/edit")
+    public String editProfile(Model model, Principal principal) {
+        String username = principal.getName();
+        Member member = memberRepository.findByUsername(username);
+        model.addAttribute("member", member);
+        return "edit_profile"; // Thymeleaf template to edit profile
+    }
 
-	// Add method to edit the current user's profile
-	@GetMapping("/profile/edit")
-	public String editProfile(Model model, Principal principal) {
-		String username = principal.getName();
-		Member member = memberRepository.findByUsername(username);
-		model.addAttribute("member", member);
-		return "edit_profile"; // Thymeleaf template to edit profile
-	}
-
-	// Save edited profile details
-	@PostMapping("/profile/edit")
-	public String saveProfile(@ModelAttribute("member") Member member, Principal principal,
-			RedirectAttributes redirectAttributes) {
-		String username = principal.getName(); // Get the current logged-in user's username
-		Member existingMember = memberRepository.findByUsername(username);
-
-		// Make sure the existing member was found
-		if (existingMember == null) {
-			redirectAttributes.addFlashAttribute("error", "Member not found.");
-			return "redirect:/profile";
-		}
-
-		// Keep the old password (don't overwrite it)
-		member.setPassword(existingMember.getPassword());
-
-		// You can also retain other necessary fields like the ID or role
-		member.setId(existingMember.getId()); // Don't overwrite the ID field
-
-		// Save the updated member details
-		memberRepository.save(member); // Save updated profile data
-
-		// Redirect back to profile page with a success message
-		redirectAttributes.addFlashAttribute("success", "Profile updated successfully!");
-		return "redirect:/profile";
-	}
-
+    // Save edited profile details
+    @PostMapping("/profile/edit")
+    public String saveProfile(@ModelAttribute("member") Member member, Principal principal, RedirectAttributes redirectAttributes) {
+        String username = principal.getName(); // Get the current logged-in user's username
+        Member existingMember = memberRepository.findByUsername(username);
+        
+        // Make sure the existing member was found
+        if (existingMember == null) {
+            redirectAttributes.addFlashAttribute("error", "Member not found.");
+            return "redirect:/profile"; // Redirect back to the profile page
+        }
+        
+        // Keep the old password (don't overwrite it)
+        member.setPassword(existingMember.getPassword());
+        
+        // You can also retain other necessary fields like the ID or role
+        member.setId(existingMember.getId());  // Don't overwrite the ID field
+        
+        // Save the updated member details
+        memberRepository.save(member); // Save updated profile data
+        
+        // Redirect back to profile page with a success message
+        redirectAttributes.addFlashAttribute("success", "Profile updated successfully!");
+        return "redirect:/profile";
+    }
 }
+
