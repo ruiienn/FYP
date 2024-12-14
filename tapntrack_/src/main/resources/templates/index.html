@@ -13,28 +13,7 @@
 	<div class="container">
 		<a href="/members/add" class="visitor"
 			sec:authorize="hasRole('ROLE_ADMIN')">Add visitor</a>
-		<div class="point">
-			<div>
-				<span style="display: block; margin-top: 10px; text-align: center;">Points</span>
-				<a href="/history"> <img class="icon" src="images/point.png" />
-				</a>
-			</div>
-			<div>
-				<span style="display: block; text-align: center;">Number of
-					rewards redeemed</span> <a href="/redeem"> <img
-					style="width: 70px; height: 50px; margin-top: 5px;"
-					src="images/redeem.png" />
-				</a>
-			</div>
-			<!-- Points History -->
-			<div>
-				<button class="history" onclick="window.location.href='/history'">
-					<span>Points History</span> <img src="/images/history.png"
-						class="icon">
-				</button>
-			</div>
-		</div>
-		<div class="leader">
+		<div class="tnt">
 			<i> Leaderboard <img src="/images/leaderboard.png"
 				class="tnt-icon"></i>
 			<!-- Leaderboard Entries -->
@@ -66,10 +45,10 @@
 						</div>
 					</div>
 				</div>
-				<!-- 4th and 5th -->
+				<!-- other placing -->
 				<div class="tnt-row">
 					<div th:each="member, iterStat : ${topMembers}"
-						th:if="${iterStat.index >= 3 && iterStat.index < 5}">
+						th:if="${iterStat.index >= 3}">
 						<div class="details">
 							<span class="placing" th:text="${iterStat.index + 1}"></span> <img
 								th:src="${member.avatar}" alt="Avatar" class="pfp">

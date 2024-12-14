@@ -5,77 +5,33 @@
 <title>Points History</title>
 <link rel="icon" type="image/png" href="/images/nfc.png">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
-<style>
-.history {
-	background: white;
-	width: 90%;
-	height: 100px;
-	border: 1px solid black;
-	border-radius: 15px;
-	margin: 10px 0px 10px 15px;
-	padding: 10px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.details {
-	display: flex;
-	flex-direction: column;
-	align-items: left;
-	margin-top: 25px;
-}
-
-.history-img {
-	width: 40px;
-	height: 40px;
-	margin-left: 15px;
-}
-
-.earn {
-	color: #06B48B;
-	font-size: 25px;
-}
-
-.deduct {
-	color: #FF2400;
-	font-size: 25px;
-}
-
-.description {
-	margin-left: 10px;
-	margin-top: -10px;
-	font-size: 15px;
-}
-
-.msg {
-	text-align: center;
-	margin-top: 20px;
-	color: #6c757d;
-}
-
-.history {
-	background-color: #E6E2D5;
-	border: 2px solid #06B48B;
-	color: #6c757d;
-	border-radius: 20px;
-	padding: 10px 15px;
-	margin-top: 10px;
-	width: auto;
-	height: auto;
-	display: inline-block;
-}
-
-.img {
-	width: 40px;
-	height: 40px;
-}
-</style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
+	<div th:replace="fragments/history_style"></div>
 	<div class="container">
-		<div class="tnt">
+		<div class="points">
+			<div>
+				<span style="display: block; margin-top: 10px; text-align: center;">My Point(s)</span>
+				<a href="/history"> <img class="icon" src="images/point.png" />
+				</a>
+			</div>
+			<div>
+				<span style="display: block; text-align: center;">Number of
+					rewards redeemed</span> <a href="/redeem"> <img
+					style="width: 70px; height: 50px; margin-top: 5px;"
+					src="images/redeem.png" />
+				</a>
+			</div>
+			 <!-- Points History -->
+			<!-- <div>
+				<button class="history" onclick="window.location.href='/history'">
+					<span>Points History</span> <img src="/images/history.png"
+						class="icon">
+				</button>
+			</div> -->
+		</div>
+		<div class="points-history">
 			<div style="padding-top: 15px;">
 				<i> Points History <img src="/images/history.png"
 					class="tnt-icon">
@@ -83,7 +39,7 @@
 			</div>
 
 			<!-- User have not log in -->
-			<div sec:authorize="!isAuthenticated()">
+		<!-- 	<div sec:authorize="!isAuthenticated()">
 				<p class="msg">
 
 					<button class="history" onclick="window.location.href='/login'">
@@ -92,10 +48,10 @@
 
 					to view your points history
 				</p>
-			</div>
+			</div> -->
 
 			<!-- User logged in but no history -->
-			<div sec:authorize="isAuthenticated()">
+			<div>
 				<div th:if="${#lists.isEmpty(pointsHistory)}">
 					<p class="msg">
 						No history yet! <br /> Psss: earn points by participating in
