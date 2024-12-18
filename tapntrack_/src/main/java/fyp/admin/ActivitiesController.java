@@ -40,9 +40,6 @@ public class ActivitiesController {
 	@Autowired
 	private MemberRepository memberRepository;
 
-	@Autowired
-	private HistoryRepository historyRepository;
-
 	@GetMapping("/activities")
 	public String viewActivities(Model model) {
 
@@ -177,20 +174,4 @@ public class ActivitiesController {
 		return "view_single_activities";
 	}
 
-	// Add points history when the user participates
-	@PostMapping("/activities/participate/{id}")
-	public String participateInActivity(@PathVariable("id") Integer id, @AuthenticationPrincipal Member member) {
-		Activities activity = activitiesRepository.getReferenceById(id);
-		int points = activity.getPoints();
-
-		// Create points history entry
-		History history = new History(member, activity, points, true, "POINTS EARNED AT " + activity.getActivity());
-		historyRepository.save(history);
-
-		// Update member points
-		member.setPoints(member.getPoints() + points);
-		memberRepository.save(member);
-
-		return "redirect:/activities";
-	}
 }

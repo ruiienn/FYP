@@ -27,9 +27,7 @@ import jakarta.validation.constraints.NotNull;
  */
 @Entity
 public class Activities {
-	@OneToMany(mappedBy = "activity")
-	private List<History> history;
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -51,14 +49,6 @@ public class Activities {
 	@NotNull(message="Please enter the amount of points to reward for the activity!")
 	@Min(value=10, message="Minimum point is 10!")
 	private int points;
-
-	public List<History> getHistory() {
-	    return history;
-	}
-
-	public void setHistory(List<History> history) {
-	    this.history = history;
-	}
 	
 	public int getId() {
 		return id;

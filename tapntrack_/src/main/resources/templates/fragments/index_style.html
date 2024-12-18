@@ -1,5 +1,24 @@
 <style>
-/* 1st,2nd,3rd card*/
+/*rank img CSS */
+.rank {
+	height: 60px;
+	width: 60px;
+	margin: 10px 0;
+}
+/* avatar img CSS */
+.pfp {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+}
+
+#over {
+	max-height: 400px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	scrollbar-color: transparent transparent;
+	
+}/* 1st,2nd,3rd card*/
 .first, .second, .third {
 	width: auto;
 	height: auto;
@@ -25,34 +44,48 @@
 	background-color: #DAAA5E;
 }
 /* 4th place onwards card*/
+.other {
+	width: 100%;
+	height: auto;
+	border: none;
+	margin: 30px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 30px;
+}
+
 .details {
     background-color: #f9f9f9;
-    width: 350px;
+    width: 500px;
+    height: 100px;
     padding: 15px;
     border-radius: 10px;
     display: flex;
-    align-items: center;
-    gap: 15px;
+    align-items: center; 
+    justify-content: space-between;
+    gap: 10px; 
 }
 
 .username {
-	display: block;
-	flex-direction: column;
-	text-align: center;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; 
+    text-align: right;
+    margin-left: auto;
 }
-/*rank img CSS */
-.rank {
-	height: 60px;
-	width: 60px;
-	margin-top: 10px;
+.placing {
+    font-weight: bold;
+    margin-right: 10px; 
+    width: 30px;
 }
-/* avatar img CSS */
-.pfp {
-	width: 150px;
-	height: 150px;
-	border-radius: 8px;
-	margin: 10px;
+
+.score {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 </style>

@@ -6,20 +6,10 @@
 <link rel="icon" type="image/png" href="/images/nfc.png">
 <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
 <script src="/bootstrap/js/bootstrap.js"></script>
-<style>
-.search {
-	width: 80%;
-	margin: 20px auto;
-	padding: 10px;
-	border: 1px solid black;
-	border-radius: 10px;
-	display: block;
-	text-align: center;
-}
-</style>
 </head>
 <body>
 	<div th:replace="fragments/style"></div>
+	<div th:replace="fragments/member_style"></div>
 	<div class="container">
 		<div class="tnt">
 			<i> Members <img src="/images/member.png" class="tnt-icon"></i>
@@ -33,43 +23,41 @@
 			<input type="text" class="search"
 				placeholder="Search Member by Username" id="filterInput">
 			<div id="overflow">
-				<div class="tnt-row">
-					<div class="card" th:each="member : ${listMembers}">
-						<!--	<img
-							th:src="@{'/uploads/members/' + ${member.id} + '/' + ${member.imagesName}}"
-							class="card-img-top">
-						 	<p class="card-text">
-							Name: <span th:text="${member.name}"></span>
-						</p>
-					 -->
-						<p class="card-text">
-							<img th:src="${member.avatar}" alt="Avatar" class="card-img" />
-						</p>
-						<p class="card-text">
-							Role: <span th:text="${member.role}"></span>
-						</p>
-						<p class="card-text">
-							Email: <span th:text="${member.email}"></span>
-						</p>
-						<p class="card-text">
-							Username: <span class="username" th:text="${member.username}"></span>
-						</p>
-
-
-
-						<p class="card-text">
-							Points: <span th:text="${member.points}"></span> <img
-								src="/images/point.png" class="icon">
-						</p>
-						<div class="end">
-							<a th:href="@{/members/edit/{id}(id=${member.id})}" class="link">Edit</a>
-							| <a th:href="@{/members/delete/{id}(id=${member.id})}"
-								class="link">Delete</a>
+				<div class="other">
+					<div th:each="member : ${listMembers}"
+						style="text-decoration: none;">
+						<div class="details">
+							<!-- Add position: relative here -->
+							<a th:href="@{/members/{id}(id=${member.id})}" class="ribbon">
+								<span>View Me!</span>
+							</a> <img th:src="${member.avatar}" alt="Avatar" class="pfp" />
+							<div class="username">
+								<p>
+									Role: <span th:text="${member.role}"></span>
+								</p>
+								<p>
+									Email: <span th:text="${member.email}"></span>
+								</p>
+								<p>
+									Username: <span th:text="${member.username}"></span>
+								</p>
+								<p>
+									Points: <span th:text="${member.points}"></span> <img
+										src="/images/point.png" class="icon">
+								</p>
+								<div>
+									<a th:href="@{/members/edit/{id}(id=${member.id})}"
+										class="link">Edit</a> | <a
+										th:href="@{/members/delete/{id}(id=${member.id})}"
+										class="link">Delete</a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	<!-- Search button JavaScript -->
 	<script>
@@ -96,11 +84,6 @@
 	    document.getElementById("filterInput").addEventListener("input", filterCards);
 	});
 
-
-
-
-
 </script>
-
 </body>
 </html>

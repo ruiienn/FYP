@@ -17,9 +17,9 @@
 			<i> Leaderboard <img src="/images/leaderboard.png"
 				class="tnt-icon"></i>
 			<!-- Leaderboard Entries -->
+			<!-- Top 3 Ranks Section -->
 			<div id="overflow">
-				<!-- Top 3 Ranks Section -->
-				<div class="tnt-row top-three">
+				<div class="tnt-row">
 					<div th:each="member, iterStat : ${topMembers}"
 						th:if="${iterStat.index < 3}">
 						<div
@@ -42,29 +42,31 @@
 										src="/images/point.png" class="icon">
 								</div>
 							</div>
+
 						</div>
 					</div>
 				</div>
-				<!-- other placing -->
-				<div class="tnt-row">
-					<div th:each="member, iterStat : ${topMembers}"
-						th:if="${iterStat.index >= 3}">
-						<div class="details">
-							<span class="placing" th:text="${iterStat.index + 1}"></span> <img
-								th:src="${member.avatar}" alt="Avatar" class="pfp">
-							<div class="username">
-								<span class="username" th:text="${member.username}"></span>
-								<div class="score"
-									style="display: flex; align-items: center; gap: 5px;">
-									<span th:text="${member.points}">Points</span> <img
-										src="/images/point.png" class="icon">
+				<div id="over">
+				<div class="other">
+						<div th:each="member, iterStat : ${topMembers}"
+							th:if="${iterStat.index >= 3}">
+							<div class="details">
+								<span class="placing" th:text="${iterStat.index + 1}"></span> <img
+									th:src="${member.avatar}" alt="Avatar" class="pfp">
+								<div class="username">
+									<span class="username" th:text="${member.username}"></span>
+									<div class="score"
+										style="display: flex; align-items: center; gap: 5px;">
+										<span th:text="${member.points}">Points</span> <img
+											src="/images/point.png" class="icon">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>

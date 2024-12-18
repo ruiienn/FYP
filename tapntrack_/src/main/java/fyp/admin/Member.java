@@ -27,8 +27,6 @@ import jakarta.validation.constraints.Size;
  */
 @Entity
 public class Member {
-	@OneToMany(mappedBy = "member")
-	private List<History> history;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,10 +34,6 @@ public class Member {
 	
 	@NotEmpty(message="Please select your avatar!")
 	private String avatar;
-	
-/*	@NotEmpty(message="Name cannot be empty!")
-	@Size(min=2, max=50, message="Name must be between 3 to 50 characters long")
-	private String name; */
 	
 	@NotEmpty(message="Username cannot be empty!")
 	@Size(min=2, max=50, message="Username must be between 5 to 50 characters long")
@@ -57,14 +51,6 @@ public class Member {
 	
 	
 	private String role;
-	
-	public List<History> getHistory() {
-	    return history;
-	}
-
-	public void setHistory(List<History> history) {
-	    this.history = history;
-	}
 	
 	public int getId() {
 		return id;

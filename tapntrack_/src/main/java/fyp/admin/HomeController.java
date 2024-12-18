@@ -12,6 +12,8 @@
 package fyp.admin;
 
 import java.util.List;
+import java.util.stream.Stream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -26,20 +28,20 @@ public class HomeController {
 	@Autowired
 	private MemberRepository memberRepository;
 	
-	 @Autowired
-	   private HistoryRepository historyRepository;
 
 /*	@GetMapping("/")
 	public String home() {
 		return "index";
 	} 
 */
-	@GetMapping("/")
-	public String home(Model model) {
-	    List<Member> topMembers = memberRepository.findAll();
-	    model.addAttribute("topMembers", topMembers);
-	    return "index";
-	}
+	 @GetMapping("/")
+	    public String getLeaderboard(Model model) {
+	        List<Member> members = memberRepository.findAll(); // Fetch all members
+	        Stream<Member> topMembers = members.stream()
+	            .filter(member -> "ROLE_USER".equals(member.getRole())); // Only include ROLE_USER
+	        model.addAttribute("topMembers", topMembers.toList()); // Convert stream to list for the model
+	        return "index";
+	    }
 	@GetMapping("/leaderboard")
 	public String leaderboard(Model model) {
 		List<Member> topMembers = memberRepository.findAll();
@@ -47,10 +49,7 @@ public class HomeController {
 		return "leaderboard";
 	}
 	@GetMapping("/history")
-	public String viewHistory(@AuthenticationPrincipal Member member, Model model) {
-	    // Use the injected instance of historyRepository
-	    List<History> history = historyRepository.findByMember(member);
-	    model.addAttribute("pointsHistory", history);
+	public String history(){
 	    return "history";
 	}
 	@GetMapping("/403")

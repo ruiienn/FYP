@@ -104,64 +104,67 @@
 	<!-- Success Message -->
 	<div id="thankyouMessage"></div>
 	<script>
-	// JavaScript for displaying avatar when selected from dropdown
-	const imageSelect = document.getElementById('select');
-	const displayAvatar = document.getElementById('avatar');
+		// JavaScript for displaying avatar when selected from dropdown
+		const imageSelect = document.getElementById('select');
+		const displayAvatar = document.getElementById('avatar');
 
-	imageSelect.addEventListener('change', function () {
-		const selectedAvatar = imageSelect.value;
-		if (selectedAvatar) {
-			displayAvatar.src = selectedAvatar;
-			displayAvatar.alt = `Selected avatar: ${this.options[this.selectedIndex].text}`;
+		imageSelect.addEventListener('change', function() {
+			const selectedAvatar = imageSelect.value;
+			if (selectedAvatar) {
+				displayAvatar.src = selectedAvatar;
+				displayAvatar.alt = Selected
+				avatar: $
+				{
+					this.options[this.selectedIndex].text
+				}
+				;
+			}
+		});
+
+		// JavaScript to show/hide password
+		function myFunction() {
+			const x = document.getElementById("password");
+			x.type = x.type === "password" ? "text" : "password";
 		}
-	});
 
-	// JavaScript to show/hide password
-	function myFunction() {
-		const x = document.getElementById("password");
-		x.type = x.type === "password" ? "text" : "password";
-	}
+		// Handle form submission
+		/*   document.getElementById('addMember').addEventListener('submit', async function (event) {
+		      event.preventDefault(); // Prevent default form submission
 
-    // Handle form submission
-  /*   document.getElementById('addMember').addEventListener('submit', async function (event) {
-        event.preventDefault(); // Prevent default form submission
+		      // Collect form data
+		      const formData = new FormData(this);
 
-        // Collect form data
-        const formData = new FormData(this);
+		      try {
+		          // Send form data to the server using fetch
+		          const response = await fetch('/members/save', {
+		              method: 'POST',
+		              body: formData
+		          });
 
-        try {
-            // Send form data to the server using fetch
-            const response = await fetch('/members/save', {
-                method: 'POST',
-                body: formData
-            });
+		          if (response.ok) {
+		              // Display success message and slide it down
+		              const thankyouMessage = document.getElementById('thankyouMessage');
+		              thankyouMessage.style.display = 'block';
 
-            if (response.ok) {
-                // Display success message and slide it down
-                const thankyouMessage = document.getElementById('thankyouMessage');
-                thankyouMessage.style.display = 'block';
+		              // Slide the notification down
+		              setTimeout(() => {
+		                  thankyouMessage.style.top = '20px'; // Slide down
+		              }, 50);
 
-                // Slide the notification down
-                setTimeout(() => {
-                    thankyouMessage.style.top = '20px'; // Slide down
-                }, 50);
-
-                // Handle OK button click
-                document.getElementById('okButton').addEventListener('click', function () {
-                    // Redirect to the leaderboard page after clicking OK
-                    window.location.href = '/'; // Adjust URL as needed
-                });
-            } else {
-                alert('Failed to add member. Please try again.');
-            }
-        } catch (error) {
-            console.error('Error adding member:', error);
-            alert('An error occurred while adding the member. Please try again later.');
-        }
-    });
- */
-
-
+		              // Handle OK button click
+		              document.getElementById('okButton').addEventListener('click', function () {
+		                  // Redirect to the leaderboard page after clicking OK
+		                  window.location.href = '/'; // Adjust URL as needed
+		              });
+		          } else {
+		              alert('Failed to add member. Please try again.');
+		          }
+		      } catch (error) {
+		          console.error('Error adding member:', error);
+		          alert('An error occurred while adding the member. Please try again later.');
+		      }
+		  });
+		 */
 	</script>
 </body>
 </html>

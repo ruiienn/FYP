@@ -40,53 +40,60 @@ public class MemberController {
 	 @Autowired
 	private MemberDetailsService memberDetailsService;
 	
-	@GetMapping("/members")
-	public String viewMembers(Model model) {
-		List<Member> listMembers = memberRepository.findAll();
-		model.addAttribute("listMembers", listMembers);
-		return "view_member";
-	}
+	 @GetMapping("/members")
+	 public String viewMembers(Model model) {
+	     List<Member> listMembers = memberRepository.findAll();
+	     model.addAttribute("listMembers", listMembers);
+	     return "view_member"; // This is your leaderboard page
+	 }
+
 	
 	@GetMapping("/members/add")
 	public String addMember(Model model) {
+		if (!model.containsAttribute("message")) {
+	        model.addAttribute("message", null); // Default to null if no message exists
+	    }
+	    if (!model.containsAttribute("uniqueLink")) {
+	        model.addAttribute("uniqueLink", null); // Default to null
+	    }
 		model.addAttribute("member", new Member());
 		return "add_member";
 	}
 
-	@PostMapping("/members/save")
-	public String saveMember(
-	    @Valid Member member,
-	    BindingResult bindingResult,
-	    Model model,
-	    RedirectAttributes redirectAttributes
-	) {
-	    // Check for validation errors
-	    if (bindingResult.hasErrors()) {
-	        model.addAttribute("error", "Validation failed. Please check the form fields.");
-	        return "add_member"; // Return to the add member form for correction
-	    }
+	 @PostMapping("/members/save")
+	 public String saveMember(
+	     @Valid Member member,
+	     BindingResult bindingResult,
+	     Model model,
+	     RedirectAttributes redirectAttributes
+	 ) {
+	     // Check for validation errors
+	     if (bindingResult.hasErrors()) {
+	         model.addAttribute("error", "Validation failed. Please check the form fields.");
+	         return "add_member"; // Return to the add member form for correction
+	     }
 
-	    // Encrypt the password
-	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-	    String encodedPassword = passwordEncoder.encode(member.getPassword());
-	    member.setPassword(encodedPassword);
+	     // Encrypt the password
+	     BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	     String encodedPassword = passwordEncoder.encode(member.getPassword());
+	     member.setPassword(encodedPassword);
 
-	    // Assign default role if not provided
-	    if (member.getRole() == null || (!member.getRole().equals("ROLE_ADMIN") && !member.getRole().equals("ROLE_USER"))) {
-	        member.setRole("ROLE_USER");
-	    }
+	     // Assign default role if not provided
+	     if (member.getRole() == null || (!member.getRole().equals("ROLE_ADMIN") && !member.getRole().equals("ROLE_USER"))) {
+	         member.setRole("ROLE_USER");
+	     }
 
-	    // Save the member
-	    Member savedMember = memberRepository.save(member);
+	     // Save the member
+	     Member savedMember = memberRepository.save(member);
 
-	    // Generate the unique link using the member's ID
-	    String uniqueLink = "http://localhost:8080/members/" + savedMember.getId();
+	     // Generate the unique link using the member's ID
+	     String uniqueLink = "http://localhost:8080/members/" + savedMember.getId();
 
-	    // Add the success flash message with the unique link
-	    redirectAttributes.addFlashAttribute("success", "Member successfully added! Unique link: " + uniqueLink);
+	     // Add the success flash message with the unique link
+	     redirectAttributes.addFlashAttribute("success", "Member successfully added! Unique link: " + uniqueLink);
 
-	    return "redirect:/members";
-	}
+	     return "redirect:/members";
+	 }
 
 
 	@GetMapping("/members/edit/{id}")
